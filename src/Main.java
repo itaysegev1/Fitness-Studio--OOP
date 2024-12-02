@@ -1,6 +1,5 @@
-import gym.Exception.*;
-import gym.customers.*;
-import gym.management.*;
+import gym.Gender;
+import gym.Person;
 import gym.management.Sessions.*;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class Main {
         gym.setSecretary(p1, 9000);
 
         Secretary gymSecretary = gym.getSecretary();
-
         Client c1 = gymSecretary.registerClient(p2);
         Client c2 = gymSecretary.registerClient(p3);
         Client c3 = gymSecretary.registerClient(p4);
