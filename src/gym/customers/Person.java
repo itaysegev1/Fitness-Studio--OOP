@@ -1,4 +1,4 @@
-package gym;
+package gym.customers;
 
 public class Person {
 
@@ -11,6 +11,12 @@ public class Person {
         this.money = money;
         this.gender = gender;
         this.birth = birth;
+    }
+    public Person(Person person) {
+        this.name = person.name;
+        this.money = person.money;
+        this.gender = person.gender;
+        this.birth = person.birth;
     }
 
 }
