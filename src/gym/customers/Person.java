@@ -1,5 +1,7 @@
 package gym.customers;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 public class Person {
 
     private String name;
@@ -10,6 +12,7 @@ public class Person {
         this.name = name;
         this.money = money;
         this.gender = gender;
+
         this.birth = birth;
     }
     public Person(Person person) {
@@ -17,6 +20,18 @@ public class Person {
         this.money = person.money;
         this.gender = person.gender;
         this.birth = person.birth;
+    }
+    private LocalDate parseDate(String date) {
+        DateTimeFormatter newd = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        try {
+            LocalDate date2 = LocalDate.parse(birth, newd);
+            return date2;
+        }
+        catch (DateTimeParseException e) {
+            System.err.println("Invalid date format. Please use dd-MM-yyyy.");
+        }
+        return null;
+
     }
 
 }
