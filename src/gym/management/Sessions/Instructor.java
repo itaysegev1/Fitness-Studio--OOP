@@ -9,20 +9,29 @@ public class Instructor extends Person {
     protected double salary;
     protected List<SessionType>l;
 
-    public Instructor(String name, int money, Gender gender, String birth,double salary) {
+
+    public Instructor(String name, int money, Gender gender, String birth) {
         super(name, money, gender, birth);
-        this.l = new ArrayList<SessionType>();
-        this.salary = salary;
+        l = new ArrayList<SessionType>();
     }
-
-
+    /// /////// GETTERS///////////////
     public double getSalary() {
         return salary;
     }
+    public List<SessionType> getL() {
+        return l;
+    }
+    /// /////SETTERS//////////////////////
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    private boolean cancoach(){
-        return true;
+    public void setL(List<SessionType> l) {
+        this.l = l;
+    }
+    private boolean cancoach(SessionType s){
+        if(l.contains(s)){
+            return true;
+        }
+        return false;
     }
 }

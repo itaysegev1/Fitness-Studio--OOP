@@ -12,7 +12,7 @@ import java.util.List;
 public class Client extends Person {
     protected List<Session>  l;
 
-    protected Client(String name, int money, Gender gender, String birth) {
+    public Client(String name, int money, Gender gender, String birth) {
         super(name, money, gender, birth);
         l = new ArrayList<Session>();
     }
@@ -28,12 +28,22 @@ public class Client extends Person {
     private void setL(List<Session> l) {
         this.l = l;
     }
-    protected void registertoclass(Session adds){
+
+    /***
+     * this function return true if its valid to register this client to
+     * the specific time, else false.
+     * the secretary will sign him
+     * @param adds
+     * @return
+     */
+    protected boolean registertoclass(Session adds){
         if(adds.getDate().equals(LocalDateTime.now())){
             if (canregistertoclass(adds)){
                 //register client to this class
+                return true;
             }
         }
+        return false;
     }
 
     /***
@@ -64,6 +74,9 @@ public class Client extends Person {
             return true;
         }
         return false;
+
+    }
+    protected void notification(){
 
     }
 }

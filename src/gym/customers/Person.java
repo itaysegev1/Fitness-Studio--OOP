@@ -22,16 +22,5 @@ public class Person {
         this.gender = person.gender;
         this.birth = person.birth;
     }
-    private LocalDate parseDate(String date) {
-        DateTimeFormatter newd = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        try {
-            return LocalDate.parse(date, newd);
-        }
-        catch (DateTimeParseException e) {
-            System.err.println("Invalid date format. Please use dd-MM-yyyy.");
-        }
-        return null;
-
-    }
 
 }
