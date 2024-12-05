@@ -2,6 +2,7 @@ package gym.management.Sessions;
 import gym.customers.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,11 @@ public class Session {
 
     protected boolean is_available() {
         return sessionType.getCapacity()>clients.size();
+    }
+
+    protected boolean is_over(){
+        LocalDate today = LocalDate.now();
+        return today.isBefore(ChronoLocalDate.from(date));
     }
     protected boolean is_sign(Client client) {
         return clients.contains(client);

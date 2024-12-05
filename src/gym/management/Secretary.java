@@ -1,6 +1,8 @@
 package gym.management;
 
+import gym.customers.Client;
 import gym.customers.Person;
+import gym.management.Sessions.Instructor;
 
 import java.util.List;
 
@@ -21,6 +23,18 @@ public class Secretary extends Person {
     protected static void setSecretary(Person p1,int salary) {
         secretary=new Secretary(p1,salary);
     }
+    public void registerClient(Person person) {
+        gym.addClient(new Client(person));
+        //////////// fill in /////////////
+    }
+    public void unregisterClient(Client client) {
+        //////////// fill in /////////////
+    }
+    public void hireInstructor(Instructor instructor) {
+        //////////// fill in /////////////
+    }
+
+
     public void printActions() {
         List<String>actions=gym.getHistory();
         System.out.println("---Actions history---");

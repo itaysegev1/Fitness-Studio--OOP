@@ -12,9 +12,13 @@ import java.util.List;
 public class Client extends Person {
     protected List<Session>  l;
 
-    private Client(String name, int money, Gender gender, String birth) {
+    protected Client(String name, int money, Gender gender, String birth) {
         super(name, money, gender, birth);
         l = new ArrayList<Session>();
+    }
+    public Client(Person person) {
+        super(person);
+        l=new ArrayList<>();
     }
     private List<Session> getL() {
         return l;
