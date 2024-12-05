@@ -20,6 +20,8 @@ public class Client extends Person {
         super(person);
         l=new ArrayList<>();
     }
+
+
     private List<Session> getL() {
         return l;
     }
