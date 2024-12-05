@@ -23,8 +23,9 @@ public class Secretary extends Person {
     protected static void setSecretary(Person p1,int salary) {
         secretary=new Secretary(p1,salary);
     }
-    public void registerClient(Person person) {
+    public Client registerClient(Person person) {
         gym.addClient(new Client(person));
+        return null;
         //////////// fill in /////////////
     }
     public void unregisterClient(Client client) {
