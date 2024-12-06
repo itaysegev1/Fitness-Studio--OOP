@@ -1,31 +1,29 @@
 package gym.customers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import gym.customers.Gender;
-import gym.customers.Person;
+
 import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Session;
 
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Client extends Person {
-    protected List<Session>  l;
+    protected List<Session>  sessions;
+    private List<String> notification;
 
-    public Client(String name, int money, Gender gender, String birth) {
-        super(name, money, gender, birth);
-        l = new ArrayList<Session>();
-    }
     public Client(Person person) {
         super(person);
-        l=new ArrayList<>();
+        sessions=new ArrayList<>();
+        notification=new ArrayList<>();
     }
-    private List<Session> getL() {
-        return l;
+    private List<Session> getSessions() {
+        return sessions;
     }
 
-    private void setL(List<Session> l) {
-        this.l = l;
+    private void addSession(Session session) {
+        this.sessions.add(session);
     }
 
     /***
@@ -54,7 +52,7 @@ public class Client extends Person {
     private boolean canregistertoclass(Session adds){
         //at the end ill add try and catch
         if(adds.getForumType()== ForumType.Seniors){
-            int age = LocalDate.now().getYear() - this.birth.getYear();
+            int age = this.age();
             if(age >= 65){
                 return true;
             }
@@ -75,7 +73,15 @@ public class Client extends Person {
         return false;
 
     }
+    public List <String> getNotifications() {
+        return notification;
+    }
+
     protected void notification(){
 
+    }
+    protected boolean equals(Client c1){
+        return (c1.getBirthDate().equals(this.getBirthDate()) && c1.getMoney() == this.getMoney()
+                && c1.getName().equals(this.getName()) && c1.getGender() == this.getGender());
     }
 }
