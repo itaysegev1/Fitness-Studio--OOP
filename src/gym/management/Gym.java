@@ -1,5 +1,6 @@
 package gym.management;
 
+import gym.Exception.DuplicateClientException;
 import gym.customers.Client;
 import gym.customers.Person;
 import gym.management.Sessions.Instructor;
@@ -37,11 +38,12 @@ public class Gym {
     public Secretary getSecretary(){
         return secretary;
     }
-    protected boolean addClient(Client client){
+    protected boolean addClient(Client client) throws DuplicateClientException {
         if(!clients.contains(client)){
             clients.add(client);
             return true;
         }
+        throw new DuplicateClientException();
         return false;
     }
     protected boolean removeClient(Client client){
