@@ -1,11 +1,9 @@
 package gym.customers;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Session;
 
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +78,8 @@ public class Client extends Person {
     protected void notification(){
 
     }
-    protected boolean equals(Client c1){
+
+    public boolean equals(Client c1){
         return (c1.getBirthDate().equals(this.getBirthDate()) && c1.getMoney() == this.getMoney()
                 && c1.getName().equals(this.getName()) && c1.getGender() == this.getGender());
     }

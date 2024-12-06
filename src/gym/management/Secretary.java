@@ -32,7 +32,7 @@ public class Secretary extends Person {
     }
     public Client registerClient(Person person) throws InvalidAgeException, DuplicateClientException {
         Client client = new Client(person);
-        if(client.toString().equals("hey")) //change it
+        if(client.age()<18)
             throw new InvalidAgeException();
         if(!gym.addClient(client))
             throw new DuplicateClientException();
@@ -40,6 +40,7 @@ public class Secretary extends Person {
         //////////// fill in /////////////
     }
     public void unregisterClient(Client client) throws ClientNotRegisteredException{
+        gym.removeClient(client);
         //////////// fill in /////////////
     }
     public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype) {
@@ -49,8 +50,11 @@ public class Secretary extends Person {
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor)
             throws InstructorNotQualifiedException
     {
-        /////////// fill in ////////////////
-        return null;
+        if(instructor.getSessionTypes().contains(sessionType))
+            throw new InstructorNotQualifiedException();
+        Session session=new Session(sessionType,date,forumType,instructor);
+        gym.addSession(new Session(sessionType,date,forumType,instructor));
+        return session;
     }
     public void registerClientToLesson(Client client, Session session)
             throws DuplicateClientException, ClientNotRegisteredException{

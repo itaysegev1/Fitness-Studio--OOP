@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gym {
-    private static Gym gym=new Gym();
+    private static final Gym gym=new Gym();
     private Secretary secretary;
     private int balance;
     private String name;
@@ -41,8 +41,9 @@ public class Gym {
     public Secretary getSecretary(){
         return secretary;
     }
+
     protected boolean addClient(Client client) throws DuplicateClientException {
-        if(!clients.contains(client)){
+        if(!IsContainClient(client)){
             clients.add(client);
             return true;
         }
@@ -51,11 +52,11 @@ public class Gym {
         }
     }
     protected boolean removeClient(Client client) throws ClientNotRegisteredException {
-        if(!clients.contains(client)){
+        if(!IsContainClient(client)){
             throw new ClientNotRegisteredToGymException();
         }
         else{
-            clients.remove(client);
+            removeclient(client);
             return true;
         }
     }
@@ -94,6 +95,25 @@ public class Gym {
         return history_actions;
     }
 
+    private boolean IsContainClient(Client c1){
+        for(Client c2:clients){
+            if(c2.equals(c1)){
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean IsContainInstructor(Instructor i1){
+        for(Instructor i2:instructors){
+            if(i1.equals(i2)){
+                return true;
+            }
+        }
+        return false;
+    }
+    private void removeclient(Client client){
+        clients.removeIf(c2 -> c2.equals(client));
+    }
 
 
 }

@@ -15,7 +15,7 @@ public class Session {
     private List<Client> clients;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    protected Session(SessionType sessionType, String date, ForumType forumType, Instructor instructor) {
+    public Session(SessionType sessionType, String date, ForumType forumType, Instructor instructor) {
         this.instructor = instructor;
         this.sessionType = sessionType;
         this.date = LocalDateTime.parse(date, formatter);
