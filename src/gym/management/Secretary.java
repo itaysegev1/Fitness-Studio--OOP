@@ -1,5 +1,6 @@
 package gym.management;
 
+import gym.Exception.ClientNotRegisteredException;
 import gym.Exception.DuplicateClientException;
 import gym.Exception.InvalidAgeException;
 import gym.customers.Client;
@@ -32,7 +33,8 @@ public class Secretary extends Person {
         Client client = new Client(person);
         if(client.toString().equals("hey")) //change it
             throw new InvalidAgeException();
-        gym.addClient(client);
+        if(!gym.addClient(client))
+            throw new DuplicateClientException();
         return client;
         //////////// fill in /////////////
     }
@@ -47,7 +49,7 @@ public class Secretary extends Person {
         /////////// fill in ////////////////
         return null;
     }
-    public void registerClientToLesson(Client client, Session session) {
+    public void registerClientToLesson(Client client, Session session) throws ClientNotRegisteredException {
         ////////// fill in ////////////////
 
     }
