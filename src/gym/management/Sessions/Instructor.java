@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Instructor extends Person {
-    protected double salary;
+    protected int salary;
     protected List<SessionType> sessionTypes;
 
 
@@ -14,8 +14,14 @@ public class Instructor extends Person {
         super(name, money, gender, birth);
         sessionTypes = new ArrayList<SessionType>();
     }
+
+    public Instructor(Person p, int salary, List<SessionType> sessionTypes) {
+        super(p);
+        this.salary = salary;
+        this.sessionTypes = sessionTypes;
+    }
     /// /////// GETTERS///////////////
-    public double getSalary() {
+    public int getSalary() {
         return salary;
     }
 
@@ -24,7 +30,7 @@ public class Instructor extends Person {
     }
 
     /// /////SETTERS//////////////////////
-    public void setSalary(double salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 

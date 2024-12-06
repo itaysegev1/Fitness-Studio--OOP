@@ -24,7 +24,7 @@ public class Session {
     }
 
     /////////////////////// Getters //////////////////////
-    protected SessionType getSessionType() {
+    public SessionType getSessionType() {
         return sessionType;
     }
     public LocalDateTime getDate() {
@@ -49,7 +49,7 @@ public class Session {
     }
     //////////// Methods //////////////
 
-    protected boolean is_available() {
+    public boolean is_available() {
         return sessionType.getCapacity()>clients.size();
     }
 
@@ -60,7 +60,10 @@ public class Session {
     protected boolean is_sign(Client client) {
         return clients.contains(client);
     }
-    protected boolean sign_to_session(Client client) {
+    public boolean sign_to_session(Client client) {
+        if(is_over()) {
+            System.out.println("Failed registration: Session is not in the future");
+        }
         if(is_available()) {
             clients.add(client);
             return true;

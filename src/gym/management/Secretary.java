@@ -1,9 +1,6 @@
 package gym.management;
 
-import gym.Exception.ClientNotRegisteredException;
-import gym.Exception.DuplicateClientException;
-import gym.Exception.InstructorNotQualifiedException;
-import gym.Exception.InvalidAgeException;
+import gym.Exception.*;
 import gym.customers.Client;
 import gym.customers.Person;
 import gym.management.Sessions.ForumType;
@@ -44,22 +41,23 @@ public class Secretary extends Person {
         //////////// fill in /////////////
     }
     public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype) {
-        //////////// fill in /////////////
+        Instructor instructor=new Instructor(p1,salary,sessionstype);
+        if(gym.addInstructor(instructor))
+            return instructor;
         return null;
     }
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor)
             throws InstructorNotQualifiedException
     {
-        if(instructor.getSessionTypes().contains(sessionType))
+        if(!instructor.getSessionTypes().contains(sessionType))
             throw new InstructorNotQualifiedException();
         Session session=new Session(sessionType,date,forumType,instructor);
         gym.addSession(new Session(sessionType,date,forumType,instructor));
         return session;
     }
-    public void registerClientToLesson(Client client, Session session)
-            throws DuplicateClientException, ClientNotRegisteredException{
-        ////////// fill in ////////////////
 
+    public void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException {
+        gym.sign_to_session(session,client);
     }
     public void notify(String message) {}
     public void notify(String date, String message) {}
@@ -68,10 +66,15 @@ public class Secretary extends Person {
 
     public void printActions() {
         List<String>actions=gym.getHistory();
-        System.out.println("---Actions history---");
         for (String action:actions) {
             System.out.println(action);
         }
         System.out.println();
+    }
+    protected void fire_secretary(){
+        gym=null;
+        salary=0;
+        actions=null;
+        secretary=null;
     }
 }
