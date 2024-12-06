@@ -2,6 +2,7 @@ package gym.management;
 
 import gym.Exception.ClientNotRegisteredException;
 import gym.Exception.DuplicateClientException;
+import gym.Exception.InstructorNotQualifiedException;
 import gym.Exception.InvalidAgeException;
 import gym.customers.Client;
 import gym.customers.Person;
@@ -38,18 +39,21 @@ public class Secretary extends Person {
         return client;
         //////////// fill in /////////////
     }
-    public void unregisterClient(Client client) {
+    public void unregisterClient(Client client) throws ClientNotRegisteredException{
         //////////// fill in /////////////
     }
     public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype) {
         //////////// fill in /////////////
         return null;
     }
-    public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor) {
+    public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor)
+            throws InstructorNotQualifiedException
+    {
         /////////// fill in ////////////////
         return null;
     }
-    public void registerClientToLesson(Client client, Session session) throws ClientNotRegisteredException {
+    public void registerClientToLesson(Client client, Session session)
+            throws DuplicateClientException, ClientNotRegisteredException{
         ////////// fill in ////////////////
 
     }

@@ -3,6 +3,7 @@ package gym.management;
 import gym.Exception.ClientNotRegisteredException;
 import gym.Exception.ClientNotRegisteredToGymException;
 import gym.Exception.DuplicateClientException;
+import gym.Exception.DuplicateClientGymException;
 import gym.customers.Client;
 import gym.customers.Person;
 import gym.management.Sessions.Instructor;
@@ -40,12 +41,14 @@ public class Gym {
     public Secretary getSecretary(){
         return secretary;
     }
-    protected boolean addClient(Client client) {
+    protected boolean addClient(Client client) throws DuplicateClientException {
         if(!clients.contains(client)){
             clients.add(client);
             return true;
         }
-        return false;
+        else{
+            throw new DuplicateClientGymException();
+        }
     }
     protected boolean removeClient(Client client) throws ClientNotRegisteredException {
         if(!clients.contains(client)){
