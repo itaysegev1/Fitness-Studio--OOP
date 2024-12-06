@@ -7,6 +7,7 @@ public class ClientComparators {
     /**
      * Comparator to sort clients by name
      */
+
     public static class NameComparator implements Comparator<Client> {
         @Override
         public int compare(Client c1, Client c2) {
