@@ -23,9 +23,7 @@ public class Client extends Person {
     private List<Session> getL() {
         return l;
     }
-    public String getname(){
-        return this.getname();
-    }
+
     private void setL(List<Session> l) {
         this.l = l;
     }

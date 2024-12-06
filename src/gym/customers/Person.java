@@ -22,5 +22,8 @@ public class Person {
         this.gender = person.gender;
         this.birth = person.birth;
     }
+    public String getName() {
+        return name;
+    }
 
 }
