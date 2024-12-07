@@ -1,21 +1,43 @@
 package gym.management;
 
+import gym.Actions;
 import gym.Exception.ClientCannotRegisteredToClassException;
 import gym.Exception.ClientNotRegisteredException;
 import gym.Exception.DuplicateClientException;
 import gym.Exception.DuplicateClientLessonException;
 import gym.customers.Client;
 import gym.management.Sessions.ForumType;
+import gym.management.Sessions.RegisterToSession;
 import gym.management.Sessions.Session;
 import java.time.LocalDateTime;
 import java.util.List;
 
-class RegisterClientToLesson {
+class RegisterClientToSession {
     protected static boolean Do(Session session, Client client) throws ClientNotRegisteredException, DuplicateClientException {
-        if(is_registered_to_gym_check(session,client) && get_enough_money_check(session,client)
-                && is_not_registered_check(session,client) && forum_type_check(session,client)
-                && is_in_future_check(session,client) && have_enough_space_check(session)){
-            //////////// fix after here ///////////
+        boolean canRegister = true;
+
+        if (!is_registered_to_gym_check(session, client)) {
+            canRegister = false;
+        }
+        if (!get_enough_money_check(session, client)) {
+            canRegister = false;
+        }
+        if (!is_not_registered_check(session, client)) {
+            canRegister = false;
+        }
+        if (!forum_type_check(session, client)) {
+            canRegister = false;
+        }
+        if (!is_in_future_check(session, client)) {
+            canRegister = false;
+        }
+        if (!have_enough_space_check(session)) {
+            canRegister = false;
+        }
+        if(canRegister){
+            RegisterToSession.doaction(Actions.registerClientToSession,session,client);
+            Gym.getInstance().addHistory("Registered client: "+client.getName()+" to session: "
+                    +session.getSessionType()+" on "+session.getDate()+" for price: "+session.getSessionType().getPrice());
             return true;
         }
         return false;
@@ -39,7 +61,7 @@ class RegisterClientToLesson {
     }
 
     private static boolean get_enough_money_check(Session session, Client client) {
-        if (client.getMoney()>session.getSessionType().getPrice())
+        if (client.getMoney()>=session.getSessionType().getPrice())
             return true;
         Gym.getInstance().addHistory("Failed registration: Client doesn't have enough balance");
         return false;
@@ -65,7 +87,7 @@ class RegisterClientToLesson {
 
     private static boolean is_in_future_check(Session session, Client client) {
         LocalDateTime now=LocalDateTime.now();
-        if(session.getDate().isAfter(now)){
+        if(session.getDate().isBefore(now)){
             Gym.getInstance().addHistory("Failed registration: Session is not in the future");
             return false;
         }

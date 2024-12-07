@@ -49,35 +49,16 @@ public class Gym {
         return secretary;
     }
 
-    protected boolean addClient(Client client) throws DuplicateClientException {
-        if(!IsContainClient(client)){
-            clients.add(client);
-            history_actions.add("Registered new client: "+client.getName());
-            return true;
-        }
-        else{
-            throw new DuplicateClientGymException();
-        }
+    protected void addClient(Client client) throws DuplicateClientException {
+        clients.add(client);
     }
 
-    protected boolean removeClient(Client client) throws ClientNotRegisteredException {
-        if(!IsContainClient(client)){
-            throw new ClientNotRegisteredToGymException();
-        }
-        else{
-            Removeclient(client);
-            history_actions.add("Unregistered client: "+client.getName());
-            return true;
-        }
+    protected void Removeclient(Client client){
+        clients.removeIf(c2 -> c2.equals(client));
     }
 
-    protected boolean addInstructor(Instructor instructor){
-        if(!IsContainInstructor(instructor)){
-             instructors.add(instructor);
-             history_actions.add("Hired new instructor: "+instructor.getName()+" with salary per hour: "+instructor.getSalary());
-            return true;
-        }
-        return false;
+    protected void addInstructor(Instructor instructor){
+        instructors.add(instructor);
     }
 
     protected boolean removeInstructor(Instructor instructor){
@@ -91,8 +72,6 @@ public class Gym {
     protected boolean addSession(Session session){
         if(!sessions.contains(session)){
             sessions.add(session);
-            history_actions.add("Created new session: "+session.getSessionType()+" on "+session.getDate()+
-                    " with instructor: "+session.getInstructor().getName());
             return true;
         }
         return false;
@@ -105,8 +84,6 @@ public class Gym {
             throw new DuplicateClientLessonException();
         }
         if(session.sign_to_session(client)) {
-            history_actions.add("Registered client: " + client.getName() + " to session: " + session.getSessionType()
-                    + " on " + session.getDate() + "for price: " + session.getSessionType().getPrice());
             return true;
         }
         return false;
@@ -152,11 +129,5 @@ public class Gym {
             }
         }
         return false;
-    }
-
-
-
-    protected void Removeclient(Client client){
-        clients.removeIf(c2 -> c2.equals(client));
     }
 }

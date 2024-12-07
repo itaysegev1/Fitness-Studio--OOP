@@ -49,6 +49,9 @@ public class Person {
         LocalDate nowLocalDate = LocalDate.now();
         return Period.between(birthLocalDate, nowLocalDate).getYears();
     }
+    public void setBalance(int balance) {
+        money -= balance;
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package gym.management;
 
+import gym.Actions;
 import gym.Exception.*;
 import gym.customers.Client;
 import gym.customers.Person;
@@ -8,7 +9,9 @@ import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
 import gym.management.Sessions.SessionType;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Secretary extends Person {
     private static Secretary secretary;
@@ -27,37 +30,47 @@ public class Secretary extends Person {
     protected static void setSecretary(Person p1,int salary) {
         secretary=new Secretary(p1,salary);
     }
-    public Client registerClient(Person person) throws InvalidAgeException, DuplicateClientException {
-        Client client = new Client(person);
-        if(client.age()<18)
-            throw new InvalidAgeException();
-        if(!gym.addClient(client))
-            throw new DuplicateClientException();
-        return client;
+    public Client registerClient(Person person)
+            throws InvalidAgeException, DuplicateClientException, InstructorNotQualifiedException, ClientNotRegisteredException {
+        List<Object> list=new ArrayList<>();
+        list.add(Actions.registerClient);
+        list.add(person);
+        return (Client) FactoryOfActions.createActions(list);
+    }
+    public void unregisterClient(Client client)
+            throws ClientNotRegisteredException, InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException {
+        List<Object> list=new ArrayList<>();
+        list.add(Actions.unregisterClient);
+        list.add(client);
+        FactoryOfActions.createActions(list);
         //////////// fill in /////////////
     }
-    public void unregisterClient(Client client) throws ClientNotRegisteredException{
-        gym.removeClient(client);
-        //////////// fill in /////////////
-    }
-    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype) {
-        Instructor instructor=new Instructor(p1,salary,sessionstype);
-        if(gym.addInstructor(instructor))
-            return instructor;
-        return null;
+    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype)
+            throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
+        List<Object> list=new ArrayList<>();
+        list.add(Actions.hireInstructor);
+        list.add(p1);
+        list.add(salary);
+        list.add(sessionstype);
+        return (Instructor) FactoryOfActions.createActions(list);
     }
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor)
-            throws InstructorNotQualifiedException
-    {
-        if(!instructor.getSessionTypes().contains(sessionType))
-            throw new InstructorNotQualifiedException();
-        Session session=new Session(sessionType,date,forumType,instructor);
-        gym.addSession(new Session(sessionType,date,forumType,instructor));
-        return session;
+            throws InstructorNotQualifiedException, InvalidAgeException, DuplicateClientException, ClientNotRegisteredException {
+        List<Object> list=new ArrayList<>();
+        list.add(Actions.addSession);
+        list.add(sessionType);
+        list.add(date);
+        list.add(forumType);
+        list.add(instructor);
+        return (Session) FactoryOfActions.createActions(list);
     }
 
-    public void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException {
-        gym.sign_to_session(session,client);
+    public void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException, InvalidAgeException, InstructorNotQualifiedException {
+        List<Object> list=new ArrayList<>();
+        list.add(Actions.registerClientToSession);
+        list.add(session);
+        list.add(client);
+        FactoryOfActions.createActions(list);
     }
     public void notify(String message) {}
     public void notify(String date, String message) {}

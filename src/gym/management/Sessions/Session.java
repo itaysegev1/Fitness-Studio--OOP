@@ -66,9 +66,6 @@ public class Session {
         return clients.contains(client);
     }
     public boolean sign_to_session(Client client) {
-        if(is_over()) {
-            System.out.println("Failed registration: Session is not in the future");
-        }
         if(is_available()) {
             clients.add(client);
             return true;
