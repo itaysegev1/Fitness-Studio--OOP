@@ -1,5 +1,7 @@
 package gym.management.Sessions;
 import gym.customers.*;
+import gym.management.Gym;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
@@ -47,6 +49,9 @@ public class Session {
     protected void setDate(String date) {
         this.date = LocalDateTime.parse(date, formatter);
     }
+    protected void addClient(Client client) {
+        clients.add(client);
+    }
     //////////// Methods //////////////
 
     public boolean is_available() {
@@ -76,6 +81,11 @@ public class Session {
             return true;
         }
         return false;
+    }
+
+    public boolean equals(Session session) {
+        return (this.getSessionType().equals(session.getSessionType()) && this.getDate().equals(session.getDate())
+                && this.getForumType().equals(session.getForumType()) && this.getInstructor().equals(session.getInstructor()));
     }
 
 

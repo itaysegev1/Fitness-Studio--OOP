@@ -16,11 +16,11 @@ public class Client extends Person {
         sessions=new ArrayList<>();
         notification=new ArrayList<>();
     }
-    private List<Session> getSessions() {
+    protected List<Session> getSessions() {
         return sessions;
     }
 
-    private void addSession(Session session) {
+    protected void addSession(Session session) {
         this.sessions.add(session);
     }
 
@@ -82,5 +82,17 @@ public class Client extends Person {
     public boolean equals(Client c1){
         return (c1.getBirthDate().equals(this.getBirthDate()) && c1.getMoney() == this.getMoney()
                 && c1.getName().equals(this.getName()) && c1.getGender() == this.getGender());
+    }
+
+    public List<ForumType> getForumTypes() {
+        List<ForumType> forumTypes=new ArrayList<>();
+        forumTypes.add(ForumType.All);
+        if(this.age()>=65)
+            forumTypes.add(ForumType.Seniors);
+        if(this.gender.equals(Gender.Male))
+            forumTypes.add(ForumType.Male);
+        else
+            forumTypes.add(ForumType.Female);
+        return forumTypes;
     }
 }

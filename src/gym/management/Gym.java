@@ -18,6 +18,7 @@ public class Gym {
     private List<Instructor> instructors;
     private List<Session> sessions;
     private List <String>history_actions;
+
     private Gym(){
         balance=0;
         clients=new ArrayList<>();
@@ -25,12 +26,15 @@ public class Gym {
         sessions=new ArrayList<>();
         history_actions=new ArrayList<>();
     }
+
     public static Gym getInstance(){
         return gym;
     }
+
     public void setName(String name){
         this.name=name;
     }
+
     public void setSecretary(Person p1,int salary){
         history_actions.add("A new secretary has started working at the gym: "+p1.getName());
         Secretary s1=Secretary.getInstance();
@@ -40,6 +44,7 @@ public class Gym {
         Secretary.setSecretary(p1,salary);
         this.secretary=Secretary.getInstance();
     }
+
     public Secretary getSecretary(){
         return secretary;
     }
@@ -54,16 +59,18 @@ public class Gym {
             throw new DuplicateClientGymException();
         }
     }
+
     protected boolean removeClient(Client client) throws ClientNotRegisteredException {
         if(!IsContainClient(client)){
             throw new ClientNotRegisteredToGymException();
         }
         else{
-            removeclient(client);
+            Removeclient(client);
             history_actions.add("Unregistered client: "+client.getName());
             return true;
         }
     }
+
     protected boolean addInstructor(Instructor instructor){
         if(!IsContainInstructor(instructor)){
              instructors.add(instructor);
@@ -72,6 +79,7 @@ public class Gym {
         }
         return false;
     }
+
     protected boolean removeInstructor(Instructor instructor){
         if(instructors.contains(instructor)){
             instructors.remove(instructor);
@@ -79,6 +87,7 @@ public class Gym {
         }
         return false;
     }
+
     protected boolean addSession(Session session){
         if(!sessions.contains(session)){
             sessions.add(session);
@@ -88,6 +97,7 @@ public class Gym {
         }
         return false;
     }
+
     protected boolean sign_to_session(Session session,Client client) throws ClientNotRegisteredException, DuplicateClientException {
         if(!IsContainClient(client))
             throw new ClientCannotRegisteredToClassException();
@@ -101,6 +111,7 @@ public class Gym {
         }
         return false;
     }
+
     protected boolean removeSession(Session session){
         if(sessions.contains(session)){
             sessions.remove(session);
@@ -108,14 +119,16 @@ public class Gym {
         }
         return false;
     }
+
     protected void addHistory(String action){
         history_actions.add(action);
     }
+
     protected List<String>getHistory(){
         return history_actions;
     }
 
-    private boolean IsContainClient(Client c1){
+    protected boolean IsContainClient(Client c1){
         for(Client c2:clients){
             if(c2.equals(c1)){
                 return true;
@@ -123,7 +136,8 @@ public class Gym {
         }
         return false;
     }
-    private boolean IsContainInstructor(Instructor i1){
+
+    protected boolean IsContainInstructor(Instructor i1){
         for(Instructor i2:instructors){
             if(i1.equals(i2)){
                 return true;
@@ -131,9 +145,18 @@ public class Gym {
         }
         return false;
     }
-    private void removeclient(Client client){
-        clients.removeIf(c2 -> c2.equals(client));
+    protected boolean IsContainSession(Session s1){
+        for(Session s2:sessions){
+            if(s2.equals(s1)){
+                return true;
+            }
+        }
+        return false;
     }
 
 
+
+    protected void Removeclient(Client client){
+        clients.removeIf(c2 -> c2.equals(client));
+    }
 }
