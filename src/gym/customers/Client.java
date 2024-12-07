@@ -11,7 +11,7 @@ public class Client extends Person {
     protected List<Session>  sessions;
     private List<String> notification;
 
-    public Client(Person person) {
+    protected Client(Person person) {
         super(person);
         sessions=new ArrayList<>();
         notification=new ArrayList<>();
