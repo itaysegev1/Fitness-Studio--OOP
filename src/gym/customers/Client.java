@@ -95,4 +95,7 @@ public class Client extends Person {
             forumTypes.add(ForumType.Female);
         return forumTypes;
     }
+    public String toString() {
+        return null;
+    }
 }

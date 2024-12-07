@@ -23,6 +23,7 @@ public class Session {
         this.date = LocalDateTime.parse(date, formatter);
         this.forumType = forumType;
         clients = new ArrayList<Client>();
+        System.out.println(this.date.format(formatter));
     }
 
     /////////////////////// Getters //////////////////////

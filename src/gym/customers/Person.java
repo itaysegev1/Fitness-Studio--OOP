@@ -8,16 +8,20 @@ import java.time.ZoneId;
 import java.util.Date;
 
 public class Person {
-
+    private int id;
     private String name;
     private int money;
-    Gender gender;
+    protected Gender gender;
     private Date birthDate;
+    private static int ID=1111;
+
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     public Person(String name, int money, Gender gender, String birth) {
+        id=ID;
         this.name = name;
         this.money = money;
         this.gender = gender;
+        ID++;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             this.birthDate = dateFormat.parse(birth);
@@ -27,6 +31,7 @@ public class Person {
         }
     }
     public Person(Person person) {
+        this.id=person.id;
         this.name = person.name;
         this.money = person.money;
         this.gender = person.gender;
