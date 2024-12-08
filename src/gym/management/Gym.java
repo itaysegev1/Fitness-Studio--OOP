@@ -17,14 +17,12 @@ public class Gym {
     private List<Client> clients;
     private List<Instructor> instructors;
     private List<Session> sessions;
-    private List <String>history_actions;
 
     private Gym(){
         balance=0;
         clients=new ArrayList<>();
         instructors=new ArrayList<>();
         sessions=new ArrayList<>();
-        history_actions=new ArrayList<>();
     }
 
     public static Gym getInstance(){
@@ -36,7 +34,7 @@ public class Gym {
     }
 
     public void setSecretary(Person p1,int salary){
-        history_actions.add("A new secretary has started working at the gym: "+p1.getName());
+        GymLogger.getInstance().log("A new secretary has started working at the gym: "+p1.getName());
         Secretary s1=Secretary.getInstance();
         if(s1!=null){
             s1.fire_secretary();
@@ -95,14 +93,6 @@ public class Gym {
             return true;
         }
         return false;
-    }
-
-    protected void addHistory(String action){
-        history_actions.add(action);
-    }
-
-    protected List<String>getHistory(){
-        return history_actions;
     }
 
     protected boolean IsContainClient(Client c1){

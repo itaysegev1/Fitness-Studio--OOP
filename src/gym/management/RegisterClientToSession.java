@@ -36,7 +36,7 @@ class RegisterClientToSession {
         }
         if(canRegister){
             RegisterToSession.doaction(Actions.registerClientToSession,session,client);
-            Gym.getInstance().addHistory("Registered client: "+client.getName()+" to session: "
+            GymLogger.getInstance().log("Registered client: "+client.getName()+" to session: "
                     +session.getSessionType()+" on "+session.getDate()+" for price: "+session.getSessionType().getPrice());
             return true;
         }
@@ -51,11 +51,13 @@ class RegisterClientToSession {
             return true;
         }
         else{
-            if(forumType_S.equals(ForumType.Male) || forumType_S.equals(ForumType.Female))
-                gym.addHistory("Failed registration: Client's gender doesn't match the session's gender requirements");
+            if(forumType_S.equals(ForumType.Male) || forumType_S.equals(ForumType.Female)) {
+                GymLogger.getInstance().log("Failed registration: Client's gender doesn't match the session's gender requirements");
+            }
 
-            if(forumType_S.equals(ForumType.Seniors))
-                gym.addHistory("Failed registration: Client doesn't meet the age requirements for this session (Seniors)");
+            if(forumType_S.equals(ForumType.Seniors)) {
+                GymLogger.getInstance().log("Failed registration: Client doesn't meet the age requirements for this session (Seniors)");
+            }
             return false;
         }
     }
@@ -63,7 +65,7 @@ class RegisterClientToSession {
     private static boolean get_enough_money_check(Session session, Client client) {
         if (client.getMoney()>=session.getSessionType().getPrice())
             return true;
-        Gym.getInstance().addHistory("Failed registration: Client doesn't have enough balance");
+        GymLogger.getInstance().log("Failed registration: Client doesn't have enough balance");
         return false;
     }
 
@@ -88,7 +90,7 @@ class RegisterClientToSession {
     private static boolean is_in_future_check(Session session, Client client) {
         LocalDateTime now=LocalDateTime.now();
         if(session.getDate().isBefore(now)){
-            Gym.getInstance().addHistory("Failed registration: Session is not in the future");
+            GymLogger.getInstance().log("Failed registration: Session is not in the future");
             return false;
         }
         return true;
@@ -96,7 +98,7 @@ class RegisterClientToSession {
 
     private static boolean have_enough_space_check(Session session) {
         if (!session.is_available()){
-            Gym.getInstance().addHistory("Failed registration: No available spots for session");
+            GymLogger.getInstance().log("Failed registration: No available spots for session");
             return false;
         }
         return true;

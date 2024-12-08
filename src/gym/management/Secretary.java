@@ -13,18 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Secretary extends Person {
+public class Secretary{
     private static Secretary secretary;
-    Gym gym;
-    int salary;
+    private Person person;
+    private Gym gym;
+    private int salary;
     private List <String> actions;
     private boolean valid;
+    private GymLogger logger;
 
     private Secretary(Person person,int salary) {
-        super(person);
+        this.person = person;
         this.salary = salary;
         valid = true;
         gym=Gym.getInstance();
+        logger=GymLogger.getInstance();
     }
     public static Secretary getInstance() {
         return secretary;
@@ -50,7 +53,6 @@ public class Secretary extends Person {
         list.add(Actions.unregisterClient);
         list.add(client);
         FactoryOfActions.createActions(list);
-        //////////// fill in /////////////
     }
     public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype)
             throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
@@ -91,11 +93,7 @@ public class Secretary extends Person {
 
     public void printActions() {
         check_valid();
-        List<String>actions=gym.getHistory();
-        for (String action:actions) {
-            System.out.println(action);
-        }
-        System.out.println();
+        logger.printLog();
     }
 
     protected void check_valid() throws NullPointerException{
@@ -103,6 +101,7 @@ public class Secretary extends Person {
             throw new NullPointerException();
     }
     protected void fire_secretary(){
+        this.person=null;
         gym=null;
         salary=0;
         actions=null;
@@ -111,7 +110,7 @@ public class Secretary extends Person {
     }
 
     public String toString(){
-        String s=super.toString();
+        String s=this.person.toString();
         s+=" | Role: Secretary | Salary per Month: "+salary;
         return s+"\n";
     }

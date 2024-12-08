@@ -10,7 +10,7 @@ class UnregisteredClient {
             throw new ClientNotRegisteredToGymException();
         }
         gym.Removeclient(client);
-        gym.addHistory("Unregistered client: "+client.getName());
+        GymLogger.getInstance().log("Unregistered client: "+client.getName());
         return client;
     }
 }

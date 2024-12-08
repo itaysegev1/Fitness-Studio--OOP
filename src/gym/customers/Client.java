@@ -5,19 +5,35 @@ import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Session;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class Client extends Person {
+public class Client {
     Person p;
     protected List<Session>  sessions;
     private List<String> notification;
 
     protected Client(Person person) {
-        super(person);
         p=person;
         sessions=new ArrayList<>();
         notification=new ArrayList<>();
     }
+    public String getName() {
+        return p.getName();
+    }
+    public int getMoney() {
+        return p.getMoney();
+    }
+    public Gender getGender() {
+        return p.getGender();
+    }
+    protected Date getBirthDate(){
+        return p.getBirthDate();
+    }
+    public void setBalance(int balance) {
+        p.setBalance(-balance);
+    }
+
     protected List<Session> getSessions() {
         return sessions;
     }
@@ -26,53 +42,8 @@ public class Client extends Person {
         this.sessions.add(session);
     }
 
-    /***
-     * this function return true if its valid to register this client to
-     * the specific time, else false.
-     * the secretary will sign him
-     * @param adds
-     * @return
-     */
-    protected boolean registertoclass(Session adds){
-        if(adds.getDate().equals(LocalDateTime.now())){
-            if (canregistertoclass(adds)){
-                //register client to this class
-                return true;
-            }
-        }
-        return false;
-    }
 
-    /***
-     * a boolean function that returns true if the client is legal lto enter a session
-     * and false otherwise
-     * @param adds
-     * @return
-     */
-    private boolean canregistertoclass(Session adds){
-        //at the end ill add try and catch
-        if(adds.getForumType()== ForumType.Seniors){
-            int age = this.age();
-            if(age >= 65){
-                return true;
-            }
-        }
-        if(adds.getForumType()== ForumType.Male){
-            if(this.gender == Gender.Male){
-                return true;
-            }
-        }
-        if(adds.getForumType()== ForumType.Female){
-            if(this.gender == Gender.Female){
-                return true;
-            }
-        }
-        if(adds.getForumType()== ForumType.All){
-            return true;
-        }
-        return false;
 
-    }
     public List <String> getNotifications() {
         return notification;
     }
@@ -82,23 +53,23 @@ public class Client extends Person {
     }
 
     public boolean equals(Client c1){
-        return (c1.getBirthDate().equals(this.getBirthDate()) && c1.getMoney() == this.getMoney()
+        return (c1.p.getBirthDate().equals(this.p.getBirthDate()) && c1.getMoney() == this.getMoney()
                 && c1.getName().equals(this.getName()) && c1.getGender() == this.getGender());
     }
 
     public List<ForumType> getForumTypes() {
         List<ForumType> forumTypes=new ArrayList<>();
         forumTypes.add(ForumType.All);
-        if(this.age()>=65)
+        if(this.p.age()>=65)
             forumTypes.add(ForumType.Seniors);
-        if(this.gender.equals(Gender.Male))
+        if(this.getGender().equals(Gender.Male))
             forumTypes.add(ForumType.Male);
         else
             forumTypes.add(ForumType.Female);
         return forumTypes;
     }
     public String toString() {
-        String s = super.toString();
+        String s = p.toString();
         return s+"\n";
     }
 }

@@ -55,7 +55,7 @@ public class Person {
         return Period.between(birthLocalDate, nowLocalDate).getYears();
     }
     public void setBalance(int balance) {
-        money -= balance;
+        money += balance;
     }
 
     public String toString() {

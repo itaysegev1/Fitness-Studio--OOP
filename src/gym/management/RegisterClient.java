@@ -14,7 +14,7 @@ class RegisterClient {
         if(gym.IsContainClient(client))
             throw new DuplicateClientGymException();
         gym.addClient(client);
-        gym.addHistory("Registered new client: "+client.getName());
+        GymLogger.getInstance().log("Registered new client: "+client.getName());
         return client;
     }
 }

@@ -14,7 +14,7 @@ class HireInstructor {
         Gym gym=Gym.getInstance();
         if(!gym.IsContainInstructor(i)){
             gym.addInstructor(i);
-            gym.addHistory("Hired new instructor: "+i.getName()+" with salary per hour: "+i.getSalary());
+            GymLogger.getInstance().log("Hired new instructor: "+i.getName()+" with salary per hour: "+i.getSalary());
             return i;
         }
         return null;

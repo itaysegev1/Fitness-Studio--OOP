@@ -3,21 +3,15 @@ package gym.management.Sessions;
 import gym.customers.Gender;
 import gym.customers.Person;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class Instructor extends Person {
+public class Instructor {
     protected Person person;
     protected int salary;
     protected List<SessionType> sessionTypes;
 
-
-    public Instructor(String name, int money, Gender gender, String birth) {
-        super(name, money, gender, birth);
-        sessionTypes = new ArrayList<SessionType>();
-    }
-
     public Instructor(Person p, int salary, List<SessionType> sessionTypes) {
-        super(p);
         this.person = p;
         this.salary = salary;
         this.sessionTypes = sessionTypes;
@@ -31,6 +25,18 @@ public class Instructor extends Person {
         return sessionTypes;
     }
 
+    public String getName() {
+        return person.getName();
+    }
+    public int getMoney() {
+        return person.getMoney();
+    }
+    public Gender getGender() {
+        return person.getGender();
+    }
+    public Date getBirthDate(){
+        return person.getBirthDate();
+    }
     /// /////SETTERS//////////////////////
     public void setSalary(int salary) {
         this.salary = salary;
@@ -46,6 +52,7 @@ public class Instructor extends Person {
         }
         return false;
     }
+
 
     public boolean equals(Instructor I1){
         return (I1.getBirthDate().equals(this.person.getBirthDate()) && I1.getMoney() == this.person.getMoney()
