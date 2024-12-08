@@ -96,6 +96,10 @@ public class Session extends Subject {
         return s+"\n";
     }
 
+    public void notify(String message) {
+        this.notifyObservers(message);
+    }
+
 
 
 }

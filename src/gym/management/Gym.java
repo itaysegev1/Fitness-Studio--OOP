@@ -123,6 +123,10 @@ public class Gym extends Subject{
         return false;
     }
 
+    protected void notify(String message){
+        this.notifyObservers(message);
+    }
+
     public String toString(){
         String s= "Gym Name: "+name+"\n";
         s+="Gym Secretary: "+secretary;

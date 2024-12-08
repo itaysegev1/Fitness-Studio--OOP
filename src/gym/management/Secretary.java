@@ -9,6 +9,9 @@ import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
 import gym.management.Sessions.SessionType;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -90,18 +93,35 @@ public class Secretary{
     }
     public void notify(String message) {
         check_valid();
+        String msg=("A message was sent to all gym clients: "+message);
+        logger.log(msg);
+        gym.notify(message);
     }
     public void notify(String date, String message) {
         check_valid();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate newdate = LocalDate.parse(date, dateFormatter);
+        String msg=("A message was sent to everyone registered for a session on "+newdate+" : "+message);
+        logger.log(msg);
+        for (Session session : gym.getSessions()) {
+            if (session.getDate().toLocalDate().equals(newdate)) {
+                session.notify(message);
+            }
+        }
     }
     public void notify(Session session, String message) {
         check_valid();
+        session.notify(message);
+        String msg=("A message was sent to everyone registered for session "+session.getSessionType().name()+" on "
+                +session.getDate()+" : "+message);
+        logger.log(msg);
     }
     public void paySalaries() throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
         check_valid();
         List<Object> list=new ArrayList<>();
         list.add(Actions.paySalaries);
         FactoryOfActions.createActions(list);
+        logger.log("Salaries have been paid to all employees");
     }
 
     public void printActions() {
