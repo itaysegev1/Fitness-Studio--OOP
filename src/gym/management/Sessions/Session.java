@@ -23,7 +23,6 @@ public class Session {
         this.date = LocalDateTime.parse(date, formatter);
         this.forumType = forumType;
         clients = new ArrayList<Client>();
-        System.out.println(this.date.format(formatter));
     }
 
     /////////////////////// Getters //////////////////////
@@ -84,6 +83,14 @@ public class Session {
     public boolean equals(Session session) {
         return (this.getSessionType().equals(session.getSessionType()) && this.getDate().equals(session.getDate())
                 && this.getForumType().equals(session.getForumType()) && this.getInstructor().equals(session.getInstructor()));
+    }
+
+    public String toString() {
+        String d=formatter.format(date);
+        String p=(clients.size())+"/"+(sessionType.getCapacity());
+        String s="Session Type: "+this.getSessionType()+" | Date: "+d+" | Forum: "+this.forumType+" | Instructor: "
+                +this.instructor.getName()+" | Participants: "+p;
+        return s+"\n";
     }
 
 

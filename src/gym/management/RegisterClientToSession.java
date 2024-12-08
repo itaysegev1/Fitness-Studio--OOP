@@ -19,16 +19,16 @@ class RegisterClientToSession {
         if (!is_registered_to_gym_check(session, client)) {
             canRegister = false;
         }
-        if (!get_enough_money_check(session, client)) {
-            canRegister = false;
-        }
-        if (!is_not_registered_check(session, client)) {
+        if (!is_in_future_check(session, client)) {
             canRegister = false;
         }
         if (!forum_type_check(session, client)) {
             canRegister = false;
         }
-        if (!is_in_future_check(session, client)) {
+        if (!get_enough_money_check(session, client)) {
+            canRegister = false;
+        }
+        if (!is_not_registered_check(session, client)) {
             canRegister = false;
         }
         if (!have_enough_space_check(session)) {

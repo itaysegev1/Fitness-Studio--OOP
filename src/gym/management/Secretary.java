@@ -109,4 +109,10 @@ public class Secretary extends Person {
         secretary=null;
         valid=false;
     }
+
+    public String toString(){
+        String s=super.toString();
+        s+=" | Role: Secretary | Salary per Month: "+salary;
+        return s+"\n";
+    }
 }

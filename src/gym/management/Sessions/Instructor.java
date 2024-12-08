@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Instructor extends Person {
+    protected Person person;
     protected int salary;
     protected List<SessionType> sessionTypes;
 
@@ -17,6 +18,7 @@ public class Instructor extends Person {
 
     public Instructor(Person p, int salary, List<SessionType> sessionTypes) {
         super(p);
+        this.person = p;
         this.salary = salary;
         this.sessionTypes = sessionTypes;
     }
@@ -46,8 +48,13 @@ public class Instructor extends Person {
     }
 
     public boolean equals(Instructor I1){
-        return (I1.getBirthDate().equals(this.getBirthDate()) && I1.getMoney() == this.getMoney()
-                && I1.getName().equals(this.getName()) && I1.getGender() == this.getGender() &&
+        return (I1.getBirthDate().equals(this.person.getBirthDate()) && I1.getMoney() == this.person.getMoney()
+                && I1.getName().equals(this.person.getName()) && I1.getGender() == this.person.getGender() &&
                 this.salary == I1.getSalary() && this.sessionTypes.equals(I1.getSessionTypes()));
+    }
+    public String toString(){
+        String s = this.person.toString();
+        s+=" | Role: Instructor | Salary per Hour: "+this.salary+" | Certified Classes: "+this.sessionTypes;
+        return s+"\n";
     }
 }

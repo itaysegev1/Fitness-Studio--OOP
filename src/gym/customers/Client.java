@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client extends Person {
+    Person p;
     protected List<Session>  sessions;
     private List<String> notification;
 
     protected Client(Person person) {
         super(person);
+        p=person;
         sessions=new ArrayList<>();
         notification=new ArrayList<>();
     }
@@ -96,6 +98,7 @@ public class Client extends Person {
         return forumTypes;
     }
     public String toString() {
-        return null;
+        String s = super.toString();
+        return s+"\n";
     }
 }

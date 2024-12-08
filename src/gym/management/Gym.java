@@ -130,4 +130,23 @@ public class Gym {
         }
         return false;
     }
+    public String toString(){
+        String s= "Gym Name: "+name+"\n";
+        s+="Gym Secretary: "+secretary;
+        s+="Gym Balance: "+balance+"\n";
+        s+="\nClients Data:\n";
+        for(Client c:clients){
+            s+=c.toString();
+        }
+        s+="\nEmployees Data:\n";
+        for(Instructor i:instructors){
+            s+=i.toString();
+        }
+        s+=secretary.toString();
+        s+="\nSessions Data:\n";
+        for (Session session : sessions) {
+            s+=session.toString();
+        }
+        return s;
+    }
 }

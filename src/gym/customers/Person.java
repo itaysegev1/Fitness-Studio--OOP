@@ -58,5 +58,11 @@ public class Person {
         money -= balance;
     }
 
+    public String toString() {
+        String bd=dateFormat.format(birthDate);
+        return ("ID: "+this.id+" | Name: "+this.name+" | Gender: "+this.gender+" | Birthday: "+bd+" | Age: "
+                +this.age()+" | Balance: "+this.money);
+    }
+
 
 }
