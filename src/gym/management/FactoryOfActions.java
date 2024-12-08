@@ -40,6 +40,9 @@ class FactoryOfActions {
             if((list.get(0)).equals(Actions.registerClientToSession)){
                 return RegisterClientToSession.Do((Session)list.get(1),(Client) list.get(2));
             }
+            if(list.get(0).equals(Actions.paySalaries)){
+                return PaySalaries.Do();
+            }
         }
         return null;
     }

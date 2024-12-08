@@ -1,6 +1,8 @@
 package gym.management.Sessions;
 import gym.customers.*;
 import gym.management.Gym;
+import gym.management.Observer;
+import gym.management.Subject;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Session {
+public class Session extends Subject {
     private final SessionType sessionType;
     private LocalDateTime date;
     private ForumType forumType;
@@ -51,6 +53,7 @@ public class Session {
     }
     protected void addClient(Client client) {
         clients.add(client);
+        this.attach(client);
     }
     //////////// Methods //////////////
 
@@ -92,6 +95,7 @@ public class Session {
                 +this.instructor.getName()+" | Participants: "+p;
         return s+"\n";
     }
+
 
 
 }

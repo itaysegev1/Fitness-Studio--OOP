@@ -1,14 +1,16 @@
 package gym.customers;
 import java.time.LocalDateTime;
 
+import gym.management.Observer;
 import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Session;
+import gym.management.Subject;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Client {
+public class Client implements Observer {
     Person p;
     protected List<Session>  sessions;
     private List<String> notification;
@@ -71,5 +73,10 @@ public class Client {
     public String toString() {
         String s = p.toString();
         return s+"\n";
+    }
+
+    @Override
+    public void update(Subject subject, String message) {
+        this.notification.add(message);
     }
 }

@@ -29,6 +29,10 @@ public class Secretary{
         gym=Gym.getInstance();
         logger=GymLogger.getInstance();
     }
+    protected int get_monthly_payment(){
+        person.setBalance(salary);
+        return salary;
+    }
     public static Secretary getInstance() {
         return secretary;
     }
@@ -84,11 +88,20 @@ public class Secretary{
         list.add(client);
         FactoryOfActions.createActions(list);
     }
-    public void notify(String message) {}
-    public void notify(String date, String message) {}
-    public void notify(Session session, String message) {}
-    public void paySalaries(){
+    public void notify(String message) {
         check_valid();
+    }
+    public void notify(String date, String message) {
+        check_valid();
+    }
+    public void notify(Session session, String message) {
+        check_valid();
+    }
+    public void paySalaries() throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
+        check_valid();
+        List<Object> list=new ArrayList<>();
+        list.add(Actions.paySalaries);
+        FactoryOfActions.createActions(list);
     }
 
     public void printActions() {

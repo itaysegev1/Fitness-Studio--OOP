@@ -11,7 +11,7 @@ public class Instructor {
     protected int salary;
     protected List<SessionType> sessionTypes;
 
-    public Instructor(Person p, int salary, List<SessionType> sessionTypes) {
+    protected Instructor(Person p, int salary, List<SessionType> sessionTypes) {
         this.person = p;
         this.salary = salary;
         this.sessionTypes = sessionTypes;
@@ -37,24 +37,21 @@ public class Instructor {
     public Date getBirthDate(){
         return person.getBirthDate();
     }
+    public void setBalance(int money) {
+        person.setBalance(money);
+
+    }
     /// /////SETTERS//////////////////////
-    public void setSalary(int salary) {
+    protected void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public void setSessionTypes(List<SessionType> sessionTypes) {
+    protected void setSessionTypes(List<SessionType> sessionTypes) {
         this.sessionTypes = sessionTypes;
     }
 
-    private boolean cancoach(SessionType s){
-        if(sessionTypes.contains(s)){
-            return true;
-        }
-        return false;
-    }
 
-
-    public boolean equals(Instructor I1){
+    protected boolean equals(Instructor I1){
         return (I1.getBirthDate().equals(this.person.getBirthDate()) && I1.getMoney() == this.person.getMoney()
                 && I1.getName().equals(this.person.getName()) && I1.getGender() == this.person.getGender() &&
                 this.salary == I1.getSalary() && this.sessionTypes.equals(I1.getSessionTypes()));

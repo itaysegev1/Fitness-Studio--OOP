@@ -9,7 +9,7 @@ import gym.management.Sessions.Session;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gym {
+public class Gym extends Subject{
     private static final Gym gym=new Gym();
     private Secretary secretary;
     private int balance;
@@ -19,7 +19,7 @@ public class Gym {
     private List<Session> sessions;
 
     private Gym(){
-        balance=0;
+        balance=9420;
         clients=new ArrayList<>();
         instructors=new ArrayList<>();
         sessions=new ArrayList<>();
@@ -28,11 +28,22 @@ public class Gym {
     public static Gym getInstance(){
         return gym;
     }
+    protected void payforclass(int balance){
+        this.balance+=balance;
+    }
+    protected void paySalary(int balance){
+        this.balance-=balance;
+    }
 
     public void setName(String name){
         this.name=name;
     }
-
+    protected List<Session> getSessions(){
+        return sessions;
+    }
+    public int getBalance(){
+        return balance;
+    }
     public void setSecretary(Person p1,int salary){
         GymLogger.getInstance().log("A new secretary has started working at the gym: "+p1.getName());
         Secretary s1=Secretary.getInstance();
@@ -49,10 +60,12 @@ public class Gym {
 
     protected void addClient(Client client) throws DuplicateClientException {
         clients.add(client);
+        this.attach(client);
     }
 
     protected void Removeclient(Client client){
         clients.removeIf(c2 -> c2.equals(client));
+        this.detach(client);
     }
 
     protected void addInstructor(Instructor instructor){
@@ -75,17 +88,6 @@ public class Gym {
         return false;
     }
 
-    protected boolean sign_to_session(Session session,Client client) throws ClientNotRegisteredException, DuplicateClientException {
-        if(!IsContainClient(client))
-            throw new ClientCannotRegisteredToClassException();
-        if(session.getClients().contains(client)){
-            throw new DuplicateClientLessonException();
-        }
-        if(session.sign_to_session(client)) {
-            return true;
-        }
-        return false;
-    }
 
     protected boolean removeSession(Session session){
         if(sessions.contains(session)){
@@ -120,6 +122,7 @@ public class Gym {
         }
         return false;
     }
+
     public String toString(){
         String s= "Gym Name: "+name+"\n";
         s+="Gym Secretary: "+secretary;
