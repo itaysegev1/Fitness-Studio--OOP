@@ -58,7 +58,16 @@ public class Instructor {
     }
     public String toString(){
         String s = this.person.toString();
-        s+=" | Role: Instructor | Salary per Hour: "+this.salary+" | Certified Classes: "+this.sessionTypes;
+        String ans="";
+        for (int i=0; i<this.sessionTypes.size(); i++){
+            if(i<this.sessionTypes.size()-1)
+                ans+=sessionTypes.get(i).toString()+", ";
+            else{
+                ans+=sessionTypes.get(i).toString();
+            }
+        }
+
+        s+=" | Role: Instructor | Salary per Hour: "+this.salary+" | Certified Classes: "+ans;
         return s+"\n";
     }
 }
