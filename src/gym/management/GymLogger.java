@@ -16,13 +16,7 @@ public class GymLogger {
     protected void log(String msg) {
         this.log.add(msg);
     }
-    protected String log() {
-        String result="";
-        for(String msg:log) {
-            result+=msg+"\n";
-        }
-        return result;
-    }
+
     protected void printLog(){
         for(String msg:log) {
             System.out.println(msg);

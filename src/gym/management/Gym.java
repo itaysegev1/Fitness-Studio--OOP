@@ -41,9 +41,10 @@ public class Gym extends Subject{
     protected List<Session> getSessions(){
         return sessions;
     }
-    public int getBalance(){
+    protected int getBalance(){
         return balance;
     }
+
     public void setSecretary(Person p1,int salary){
         GymLogger.getInstance().log("A new secretary has started working at the gym: "+p1.getName());
         Secretary s1=Secretary.getInstance();

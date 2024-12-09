@@ -11,12 +11,19 @@ public class Instructor {
     protected int salary;
     protected List<SessionType> sessionTypes;
 
+    /**
+     * Constructor of the Instructors
+     * @param p- the person
+     * @param salary- salary per hour
+     * @param sessionTypes- list of the session types he can coach
+     */
     protected Instructor(Person p, int salary, List<SessionType> sessionTypes) {
         this.person = p;
         this.salary = salary;
         this.sessionTypes = sessionTypes;
     }
-    /// /////// GETTERS///////////////
+
+    ////////////////// GETTERS ////////////////////
     public int getSalary() {
         return salary;
     }
@@ -28,20 +35,25 @@ public class Instructor {
     public String getName() {
         return person.getName();
     }
+
     public int getMoney() {
         return person.getBalance();
     }
+
     public Gender getGender() {
         return person.getGender();
     }
+
     public Date getBirthDate(){
         return person.getBirthDate();
     }
+
+
+    /////////////// SETTERS //////////////////////
     public void setBalance(int money) {
         person.setBalance(money);
-
     }
-    /// /////SETTERS//////////////////////
+
     protected void setSalary(int salary) {
         this.salary = salary;
     }
@@ -50,12 +62,23 @@ public class Instructor {
         this.sessionTypes = sessionTypes;
     }
 
+    ///////////////// Methods //////////////////////
 
+    /**
+     * This method checks if this instructor and other instructor are the same
+     * @param I1- the other instructor
+     * @return - if they are the same or not
+     */
     protected boolean equals(Instructor I1){
         return (I1.getBirthDate().equals(this.person.getBirthDate()) && I1.getMoney() == this.person.getBalance()
                 && I1.getName().equals(this.person.getName()) && I1.getGender() == this.person.getGender() &&
                 this.salary == I1.getSalary() && this.sessionTypes.equals(I1.getSessionTypes()));
     }
+
+    /**
+     * A description of our instance
+     * @return - "ID: | Name: | Gender: | Birthday: | Age: | Balance: | Role: | Salary per Hour: | Certified Classes: "
+     */
     public String toString(){
         String s = this.person.toString();
         String ans="";

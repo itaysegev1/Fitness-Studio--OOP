@@ -35,7 +35,7 @@ class RegisterClientToSession {
             canRegister = false;
         }
         if(canRegister){
-            RegisterToSession.doaction(Actions.registerClientToSession,session,client);
+            RegisterToSession.do_action(Actions.registerClientToSession,session,client);
             GymLogger.getInstance().log("Registered client: "+client.getName()+" to session: "
                     +session.getSessionType()+" on "+session.getDate()+" for price: "+session.getSessionType().getPrice());
             Gym.getInstance().payforclass(session.getSessionType().getPrice());

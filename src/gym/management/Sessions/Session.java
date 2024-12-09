@@ -1,9 +1,6 @@
 package gym.management.Sessions;
 import gym.customers.*;
-import gym.management.Gym;
-import gym.management.Observer;
 import gym.management.Subject;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
@@ -51,37 +48,42 @@ public class Session extends Subject {
     protected void setDate(String date) {
         this.date = LocalDateTime.parse(date, formatter);
     }
+
     protected void addClient(Client client) {
         clients.add(client);
         this.attach(client);
     }
     //////////// Methods //////////////
 
+    /**
+     * check if the session didnt get to the capacity yet
+     * @return true if the lesson still available
+     */
     public boolean is_available() {
         return sessionType.getCapacity()>clients.size();
     }
 
-    protected boolean is_over(){
-        LocalDate today = LocalDate.now();
-        return today.isBefore(ChronoLocalDate.from(date));
-    }
-    protected boolean is_sign(Client client) {
-        return clients.contains(client);
-    }
-    public boolean sign_to_session(Client client) {
-        if(is_available()) {
-            clients.add(client);
-            return true;
-        }
-        return false;
-    }
-    protected boolean remove_client(Client client) {
-        if(sign_to_session(client)) {
-            clients.remove(client);
-            return true;
-        }
-        return false;
-    }
+//    protected boolean is_over(){
+//        LocalDate today = LocalDate.now();
+//        return today.isBefore(ChronoLocalDate.from(date));
+//    }
+//    protected boolean is_sign(Client client) {
+//        return clients.contains(client);
+//    }
+//    public boolean sign_to_session(Client client) {
+//        if(is_available()) {
+//            clients.add(client);
+//            return true;
+//        }
+//        return false;
+//    }
+//    protected boolean remove_client(Client client) {
+//        if(sign_to_session(client)) {
+//            clients.remove(client);
+//            return true;
+//        }
+//        return false;
+//    }
 
     public boolean equals(Session session) {
         return (this.getSessionType().equals(session.getSessionType()) && this.getDate().equals(session.getDate())

@@ -111,10 +111,10 @@ public class Secretary{
     }
     public void notify(Session session, String message) {
         check_valid();
-        session.notify(message);
         String msg=("A message was sent to everyone registered for session "+session.getSessionType().name()+" on "
                 +session.getDate()+" : "+message);
         logger.log(msg);
+        session.notify(message);
     }
     public void paySalaries() throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
         check_valid();

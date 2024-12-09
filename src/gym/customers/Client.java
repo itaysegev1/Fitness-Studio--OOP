@@ -85,7 +85,7 @@ public class Client implements Observer {
 
     /**
      * This method return the string of the person that the client is.
-     * @return - Clients toString
+     * @return - "ID: | Name: | Gender: | Birthday: | Age: | Balance: "
      */
     public String toString() {
         String s = p.toString();
