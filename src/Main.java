@@ -18,7 +18,6 @@ public class Main {
         Person p8 = new Person("Rom", 1600, Gender.Female, "12-12-1999");
 
         Person p9 = new Person("Dani", 850, Gender.Male, "03-10-2015");
-
         Gym gym = Gym.getInstance();
         gym.setName("CrossFit");
         gym.setSecretary(p1, 9000);

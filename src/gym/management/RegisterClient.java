@@ -9,7 +9,7 @@ import gym.customers.Person;
 
 class RegisterClient {
     protected static Client Do(Person person) throws InvalidAgeException, DuplicateClientException {
-        Client client= CreateClient.doaction(Actions.registerClient,person);
+        Client client= CreateClient.do_action(Actions.registerClient,person);
         Gym gym=Gym.getInstance();
         if(gym.IsContainClient(client))
             throw new DuplicateClientGymException();

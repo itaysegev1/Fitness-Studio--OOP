@@ -3,8 +3,19 @@ package gym.customers;
 import gym.Exception.InvalidAgeException;
 import gym.Actions;
 
+/**
+ * This class is in charge of creating new clients
+ * it will be an option just throw that class.
+ */
 public class CreateClient {
-    public static Client doaction(Actions a,Person p1) throws InvalidAgeException {
+    /**
+     * This method check if the action requirement is really to create new client, if it does it create it
+     * @param a- the action we want to make
+     * @param p1- the client will be created by this person
+     * @return - the client we made.
+     * @throws InvalidAgeException- if the age of the client is under 18 and he cant register to the Gym
+     */
+    public static Client do_action(Actions a, Person p1) throws InvalidAgeException {
         if (a == Actions.registerClient) {
             if (p1.age() < 18)
                 throw new InvalidAgeException();

@@ -2,66 +2,90 @@ package gym.customers;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
 public class Person {
-    private int id;
-    private String name;
-    private int money;
-    protected Gender gender;
-    private Date birthDate;
+    private int Id;
+    private String Name;
+    private int Balance;
+    protected Gender Gender;
+    private Date BirthDate;
     private static int ID=1111;
+    private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    /**
+     * A regular constructor for a Person
+     * @param name- the name of the person
+     * @param money- the balance the person have
+     * @param gender- the gender of the person
+     * @param birth - a string of the person BD need to be in this format-"dd-MM-yyyy"
+     */
     public Person(String name, int money, Gender gender, String birth) {
-        id=ID;
-        this.name = name;
-        this.money = money;
-        this.gender = gender;
+        Id =ID;
+        this.Name = name;
+        this.Balance = money;
+        this.Gender = gender;
         ID++;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            this.birthDate = dateFormat.parse(birth);
+            this.BirthDate = dateFormat.parse(birth);
         } catch (ParseException e) {
             System.out.println("Invalid date format for birthDate: " + birth);
-            this.birthDate = null; // or assign a default value
+            this.BirthDate = null; // or assign a default value
         }
     }
+
+    /**
+     * Copy Constructor
+     * @param person- the person we want to get a deep copy of it.
+     */
     public Person(Person person) {
-        this.id=person.id;
-        this.name = person.name;
-        this.money = person.money;
-        this.gender = person.gender;
-        this.birthDate = person.birthDate;
+        this.Id =person.Id;
+        this.Name = person.Name;
+        this.Balance = person.Balance;
+        this.Gender = person.Gender;
+        this.BirthDate = person.BirthDate;
     }
+
+    /////////////// Getters /////////////////
     public String getName() {
-        return name;
+        return Name;
     }
-    public int getMoney() {
-        return money;
+    public int getBalance() {
+        return Balance;
     }
     public Gender getGender() {
-        return gender;
+        return Gender;
     }
     public Date getBirthDate() {
-        return birthDate;
+        return BirthDate;
     }
+
+    /**
+     * This method compute this person age based on its B-Day and this current day
+     * @return - An integer of the age.
+     */
     public int age(){
-        LocalDate birthLocalDate = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate birthLocalDate = BirthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate nowLocalDate = LocalDate.now();
         return Period.between(birthLocalDate, nowLocalDate).getYears();
     }
+
+    ///////////////// Setters //////////////////////
     public void setBalance(int balance) {
-        money += balance;
+        Balance += balance;
     }
 
+    /**
+     * String that describe the peron: "ID: | Name: | Gender: | Birthday: | Age: | Balance: "
+     * @return Person describe string
+     */
     public String toString() {
-        String bd=dateFormat.format(birthDate);
-        return ("ID: "+this.id+" | Name: "+this.name+" | Gender: "+this.gender+" | Birthday: "+bd+" | Age: "
-                +this.age()+" | Balance: "+this.money);
+        String bd= DATE_FORMAT.format(BirthDate);
+        return ("ID: "+this.Id +" | Name: "+this.Name +" | Gender: "+this.Gender +" | Birthday: "+bd+" | Age: "
+                +this.age()+" | Balance: "+this.Balance);
     }
 
 

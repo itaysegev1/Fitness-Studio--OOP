@@ -2,7 +2,7 @@ package gym.management.Sessions;
 
 import gym.customers.Gender;
 import gym.customers.Person;
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class Instructor {
         return person.getName();
     }
     public int getMoney() {
-        return person.getMoney();
+        return person.getBalance();
     }
     public Gender getGender() {
         return person.getGender();
@@ -52,7 +52,7 @@ public class Instructor {
 
 
     protected boolean equals(Instructor I1){
-        return (I1.getBirthDate().equals(this.person.getBirthDate()) && I1.getMoney() == this.person.getMoney()
+        return (I1.getBirthDate().equals(this.person.getBirthDate()) && I1.getMoney() == this.person.getBalance()
                 && I1.getName().equals(this.person.getName()) && I1.getGender() == this.person.getGender() &&
                 this.salary == I1.getSalary() && this.sessionTypes.equals(I1.getSessionTypes()));
     }
