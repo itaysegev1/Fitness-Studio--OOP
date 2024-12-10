@@ -38,7 +38,7 @@ public class Client implements Observer {
     protected Date getBirthDate(){
         return p.getBirthDate();
     }
-    protected List<Session> getSessions() {
+    public List<Session> getSessions() {
         return sessions;
     }
     public List <String> getNotifications() {

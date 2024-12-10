@@ -98,13 +98,17 @@ public class Gym extends Subject{
      * @param client the client that need to be remove.
      */
     protected void RemoveClient(Client client){
-        Client c;
+        Client c=null;
         for (Client c1: clients) {
             if(c1.equals(client)){
-                clients.remove(c1);
-                this.detach(c1);
+                c=c1;
             }
         }
+        if(c!=null) {
+            clients.remove(c);
+            this.detach(c);
+        }
+
     }
 
     /**
@@ -136,7 +140,7 @@ public class Gym extends Subject{
      * @return if it had been added or not
      */
     protected boolean addSession(Session session){
-        if(IsContainSession(session)){
+        if(!IsContainSession(session)){
             sessions.add(session);
             return true;
         }

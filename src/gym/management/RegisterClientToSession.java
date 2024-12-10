@@ -33,6 +33,9 @@ class RegisterClientToSession {
         if (!have_enough_space_check(session)) {
             canRegister = false;
         }
+//        if(!not_registered_to_other_lesson(session, client)) {
+//            canRegister = false;
+//        }
         if(canRegister){
             RegisterToSession.do_action(session,client);
             GymLogger.getInstance().log("Registered client: "+client.getName()+" to session: "
@@ -102,4 +105,14 @@ class RegisterClientToSession {
         return true;
 
     }
+
+//    private static boolean not_registered_to_other_lesson(Session session, Client client) {
+//        List<Session>sessions=client.getSessions();
+//        for (Session s:sessions){
+//            if(s.getDate().equals(session.getDate())){
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 }
