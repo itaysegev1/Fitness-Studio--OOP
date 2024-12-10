@@ -17,10 +17,10 @@ public class Person {
 
     /**
      * A regular constructor for a Person
-     * @param name- the name of the person
-     * @param money- the balance the person have
-     * @param gender- the gender of the person
-     * @param birth - a string of the person BD need to be in this format-"dd-MM-yyyy"
+     * @param name the name of the person
+     * @param money the balance the person have
+     * @param gender the gender of the person
+     * @param birth  a string of the person BD need to be in this format-"dd-MM-yyyy"
      */
     public Person(String name, int money, Gender gender, String birth) {
         Id =ID;
@@ -39,7 +39,7 @@ public class Person {
 
     /**
      * Copy Constructor
-     * @param person- the person we want to get a deep copy of it.
+     * @param person the person we want to get a deep copy of it.
      */
     public Person(Person person) {
         this.Id =person.Id;
@@ -65,7 +65,7 @@ public class Person {
 
     /**
      * This method compute this person age based on its B-Day and this current day
-     * @return - An integer of the age.
+     * @return  An integer of the age.
      */
     public int age(){
         LocalDate birthLocalDate = BirthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

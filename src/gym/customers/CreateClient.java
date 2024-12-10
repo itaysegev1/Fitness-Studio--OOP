@@ -9,9 +9,9 @@ import gym.Exception.InvalidAgeException;
 public class CreateClient {
     /**
      * This method check if the action requirement is really to create new client, if it does it create it
-     * @param p1- the client will be created by this person
-     * @return - the client we made.
-     * @throws InvalidAgeException- if the age of the client is under 18 and he cant register to the Gym
+     * @param p1 the client will be created by this person
+     * @return  the client we made.
+     * @throws InvalidAgeException if the age of the client is under 18 and he cant register to the Gym
      */
     public static Client do_action(Person p1) throws InvalidAgeException {
         if (p1.age() < 18)

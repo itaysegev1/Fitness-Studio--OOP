@@ -13,9 +13,9 @@ public class Instructor {
 
     /**
      * Constructor of the Instructors
-     * @param p- the person
-     * @param salary- salary per hour
-     * @param sessionTypes- list of the session types he can coach
+     * @param p the person
+     * @param salary salary per hour
+     * @param sessionTypes list of the session types he can coach
      */
     protected Instructor(Person p, int salary, List<SessionType> sessionTypes) {
         this.person = p;
@@ -66,8 +66,8 @@ public class Instructor {
 
     /**
      * This method checks if this instructor and other instructor are the same
-     * @param I1- the other instructor
-     * @return - if they are the same or not
+     * @param I1 the other instructor
+     * @return if they are the same or not
      */
     protected boolean equals(Instructor I1){
         return (I1.getBirthDate().equals(this.person.getBirthDate()) && I1.getMoney() == this.person.getBalance()
@@ -77,7 +77,7 @@ public class Instructor {
 
     /**
      * A description of our instance
-     * @return - "ID: | Name: | Gender: | Birthday: | Age: | Balance: | Role: | Salary per Hour: | Certified Classes: "
+     * @return  "ID: | Name: | Gender: | Birthday: | Age: | Balance: | Role: | Salary per Hour: | Certified Classes: "
      */
     public String toString(){
         String s = this.person.toString();

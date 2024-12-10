@@ -8,7 +8,18 @@ import gym.management.Sessions.SessionType;
 
 import java.util.List;
 
+/**
+ * This class taking charge of hiring new instructor
+ */
 class HireInstructor {
+    /**
+     * This method get all the things it needs to create new instructor
+     * and if it is not in the gym already it will be created
+     * @param person the person that the instructor is created from
+     * @param salary salary per hour
+     * @param sessionTypes list of session types it can coach
+     * @return the new instructor
+     */
     protected static Instructor Do(Person person,  int salary, List<SessionType> sessionTypes) {
         Instructor i= CreateInstructor.do_action(person, salary, sessionTypes);
         Gym gym=Gym.getInstance();

@@ -21,9 +21,9 @@ public abstract class Session extends Subject {
 
     /**
      * a regular instructor of lesson, can be called just from subclasses because this is an abstract class
-     * @param date- the date of the lesson
-     * @param forumType- the forum type of this lesson
-     * @param instructor- the instructor of the lesson
+     * @param date the date of the lesson
+     * @param forumType the forum type of this lesson
+     * @param instructor the instructor of the lesson
      */
     protected Session(String date, ForumType forumType, Instructor instructor) {
         this.instructor = instructor;
@@ -75,8 +75,8 @@ public abstract class Session extends Subject {
 
     /**
      * This method checks if this session and other session are the same.
-     * @param session- the session we compare to
-     * @return - a boolean answer if they are the same or not
+     * @param session the session we compare to
+     * @return  a boolean answer if they are the same or not
      */
     public boolean equals(Session session) {
         return (this.getClass().equals(session.getClass()) && this.getDate().equals(session.getDate())
@@ -86,7 +86,7 @@ public abstract class Session extends Subject {
     /**
      * creating a string that describe this class:
      * Session Type:  | Date:  | Forum:  | Instructor:  | Participants: "
-     * @return - the string that describe the class
+     * @return the string that describe the class
      */
     public String toString() {
         String d=formatter.format(date);
@@ -98,7 +98,7 @@ public abstract class Session extends Subject {
 
     /**
      * This method responsible to announce all the members of this class a message from the gym.
-     * @param message - the message we want to send to all the members of the class
+     * @param message the message we want to send to all the members of the class
      */
     public void notify(String message) {
         this.notifyObservers(message);

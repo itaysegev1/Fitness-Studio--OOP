@@ -69,7 +69,7 @@ public class Client implements Observer {
 
     /**
      * Method that check what are the forum types this client is in.
-     * @return- a list of all the forum types
+     * @return  a list of all the forum types
      */
     public List<ForumType> getForumTypes() {
         List<ForumType> forumTypes=new ArrayList<>();
@@ -85,7 +85,7 @@ public class Client implements Observer {
 
     /**
      * This method return the string of the person that the client is.
-     * @return - "ID: | Name: | Gender: | Birthday: | Age: | Balance: "
+     * @return  "ID: | Name: | Gender: | Birthday: | Age: | Balance: "
      */
     public String toString() {
         String s = p.toString();
