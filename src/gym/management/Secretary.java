@@ -1,20 +1,13 @@
 package gym.management;
 
-import gym.Actions;
 import gym.Exception.*;
 import gym.customers.Client;
 import gym.customers.Person;
-import gym.management.Sessions.ForumType;
-import gym.management.Sessions.Instructor;
-import gym.management.Sessions.Session;
-import gym.management.Sessions.SessionType;
+import gym.management.Sessions.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Secretary{
     private static Secretary secretary;
@@ -46,50 +39,28 @@ public class Secretary{
         secretary=new Secretary(p1,salary);
     }
     public Client registerClient(Person person)
-            throws InvalidAgeException, DuplicateClientException, InstructorNotQualifiedException, ClientNotRegisteredException {
+            throws InvalidAgeException, DuplicateClientException{
         check_valid();
-        List<Object> list=new ArrayList<>();
-        list.add(Actions.registerClient);
-        list.add(person);
-        return (Client) FactoryOfActions.createActions(list);
+        return RegisterClient.Do(person);
     }
     public void unregisterClient(Client client)
-            throws ClientNotRegisteredException, InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException {
+            throws ClientNotRegisteredException {
         check_valid();
-        List<Object> list=new ArrayList<>();
-        list.add(Actions.unregisterClient);
-        list.add(client);
-        FactoryOfActions.createActions(list);
+        UnregisteredClient.Do(client);
     }
-    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype)
-            throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
+    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype) {
         check_valid();
-        List<Object> list=new ArrayList<>();
-        list.add(Actions.hireInstructor);
-        list.add(p1);
-        list.add(salary);
-        list.add(sessionstype);
-        return (Instructor) FactoryOfActions.createActions(list);
+        return HireInstructor.Do(p1, salary, sessionstype);
     }
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor)
-            throws InstructorNotQualifiedException, InvalidAgeException, DuplicateClientException, ClientNotRegisteredException {
+            throws InstructorNotQualifiedException {
         check_valid();
-        List<Object> list=new ArrayList<>();
-        list.add(Actions.addSession);
-        list.add(sessionType);
-        list.add(date);
-        list.add(forumType);
-        list.add(instructor);
-        return (Session) FactoryOfActions.createActions(list);
+        return AddSession.Do(sessionType, date, forumType, instructor);
     }
 
     public void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException, InvalidAgeException, InstructorNotQualifiedException {
         check_valid();
-        List<Object> list=new ArrayList<>();
-        list.add(Actions.registerClientToSession);
-        list.add(session);
-        list.add(client);
-        FactoryOfActions.createActions(list);
+        RegisterClientToSession.Do(session,client);
     }
     public void notify(String message) {
         check_valid();
@@ -118,9 +89,7 @@ public class Secretary{
     }
     public void paySalaries() throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
         check_valid();
-//        List<Object> list=new ArrayList<>();
-//        list.add(Actions.paySalaries);
-//        FactoryOfActions.createActions(list);
+        PaySalaries.Do();
         logger.log("Salaries have been paid to all employees");
     }
 

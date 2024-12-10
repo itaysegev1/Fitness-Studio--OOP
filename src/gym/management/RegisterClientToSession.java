@@ -1,6 +1,5 @@
 package gym.management;
 
-import gym.Actions;
 import gym.Exception.ClientCannotRegisteredToClassException;
 import gym.Exception.ClientNotRegisteredException;
 import gym.Exception.DuplicateClientException;
@@ -13,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 class RegisterClientToSession {
-    protected static boolean Do(Session session, Client client) throws ClientNotRegisteredException, DuplicateClientException {
+    protected static void Do(Session session, Client client) throws ClientNotRegisteredException, DuplicateClientException {
         boolean canRegister = true;
 
         if (!is_registered_to_gym_check(session, client)) {
@@ -35,13 +34,11 @@ class RegisterClientToSession {
             canRegister = false;
         }
         if(canRegister){
-            RegisterToSession.do_action(Actions.registerClientToSession,session,client);
+            RegisterToSession.do_action(session,client);
             GymLogger.getInstance().log("Registered client: "+client.getName()+" to session: "
                     +session.getClass().getSimpleName()+" on "+session.getDate()+" for price: "+session.getPrice());
             Gym.getInstance().payforclass(session.getPrice());
-            return true;
         }
-        return false;
     }
 
     private static boolean forum_type_check(Session session, Client client) {

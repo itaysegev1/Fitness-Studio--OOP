@@ -1,5 +1,4 @@
 package gym.management;
-import gym.Actions;
 import gym.Exception.DuplicateClientException;
 import gym.Exception.DuplicateClientGymException;
 import gym.Exception.InvalidAgeException;
@@ -9,7 +8,7 @@ import gym.customers.Person;
 
 class RegisterClient {
     protected static Client Do(Person person) throws InvalidAgeException, DuplicateClientException {
-        Client client= CreateClient.do_action(Actions.registerClient,person);
+        Client client= CreateClient.do_action(person);
         Gym gym=Gym.getInstance();
         if(gym.IsContainClient(client))
             throw new DuplicateClientGymException();

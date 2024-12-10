@@ -1,6 +1,5 @@
 package gym.management;
 
-import gym.Actions;
 import gym.Exception.InstructorNotQualifiedException;
 import gym.management.Sessions.*;
 

@@ -1,6 +1,5 @@
 package gym.management.Sessions;
 
-import gym.Actions;
 import gym.customers.Client;
 
 /**
@@ -13,10 +12,8 @@ public class RegisterToSession {
      * @param session - the session we want to register to
      * @param client - the client we want to register to the lesson
      */
-    public static void do_action(Actions a, Session session, Client client) {
-        if(a.equals(Actions.registerClientToSession)){
-            session.addClient(client);
-            client.setBalance(session.getPrice());
-        }
+    public static void do_action(Session session, Client client) {
+        session.addClient(client);
+        client.setBalance(session.getPrice());
     }
 }

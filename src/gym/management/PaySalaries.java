@@ -6,7 +6,7 @@ import gym.management.Sessions.Session;
 import java.util.List;
 
 public class PaySalaries {
-    protected static int Do(){
+    protected static void Do(){
         Gym gym = Gym.getInstance();
         List<Session> sessions=gym.getSessions();
         for(Session session:sessions){
@@ -15,6 +15,5 @@ public class PaySalaries {
             gym.paySalary(salary);
         }
         gym.paySalary(gym.getSecretary().get_monthly_payment());
-        return gym.getBalance();
     }
 }
