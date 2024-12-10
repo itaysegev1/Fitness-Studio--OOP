@@ -111,7 +111,7 @@ public class Secretary{
     }
     public void notify(Session session, String message) {
         check_valid();
-        String msg=("A message was sent to everyone registered for session "+session.getSessionType().name()+" on "
+        String msg=("A message was sent to everyone registered for session "+session.getClass().getSimpleName()+" on "
                 +session.getDate()+" : "+message);
         logger.log(msg);
         session.notify(message);

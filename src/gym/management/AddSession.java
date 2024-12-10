@@ -11,7 +11,7 @@ class AddSession {
         Gym gym=Gym.getInstance();
         if(!gym.IsContainSession(s)){
             gym.addSession(s);
-            GymLogger.getInstance().log("Created new session: "+s.getSessionType()+" on "+s.getDate()+
+            GymLogger.getInstance().log("Created new session: "+s.getClass().getSimpleName()+" on "+s.getDate()+
                     " with instructor: "+s.getInstructor().getName());
             return s;
         }

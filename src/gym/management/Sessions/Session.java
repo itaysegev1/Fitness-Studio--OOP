@@ -9,16 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Session extends Subject {
-    private final SessionType sessionType;
     private LocalDateTime date;
     private ForumType forumType;
     private Instructor instructor;
     private List<Client> clients;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    protected Session(SessionType sessionType, String date, ForumType forumType, Instructor instructor) {
+    protected Session(String date, ForumType forumType, Instructor instructor) {
         this.instructor = instructor;
-        this.sessionType = sessionType;
         this.date = LocalDateTime.parse(date, formatter);
         this.forumType = forumType;
         clients = new ArrayList<Client>();
@@ -30,9 +28,6 @@ public abstract class Session extends Subject {
 
 
     /////////////////////// Getters //////////////////////
-    public SessionType getSessionType() {
-        return sessionType;
-    }
     public LocalDateTime getDate() {
         return date;
     }
@@ -69,14 +64,14 @@ public abstract class Session extends Subject {
     }
 
     public boolean equals(Session session) {
-        return (this.getSessionType().equals(session.getSessionType()) && this.getDate().equals(session.getDate())
+        return (this.getClass().equals(session.getClass()) && this.getDate().equals(session.getDate())
                 && this.getForumType().equals(session.getForumType()) && this.getInstructor().equals(session.getInstructor()));
     }
 
     public String toString() {
         String d=formatter.format(date);
         String p=(clients.size())+"/"+(this.getCapacity());
-        String s="Session Type: "+this.getSessionType()+" | Date: "+d+" | Forum: "+this.forumType+" | Instructor: "
+        String s="Session Type: "+this.getClass().getSimpleName()+" | Date: "+d+" | Forum: "+this.forumType+" | Instructor: "
                 +this.instructor.getName()+" | Participants: "+p;
         return s+"\n";
     }
