@@ -24,7 +24,7 @@ public class Gym extends Subject{
      * this is a private constructor of the gym cause there is only one gym.
      */
     private Gym(){
-        balance=9420;
+        balance=0;
         clients=new ArrayList<>();
         instructors=new ArrayList<>();
         sessions=new ArrayList<>();
