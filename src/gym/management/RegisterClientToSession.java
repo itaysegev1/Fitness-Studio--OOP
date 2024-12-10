@@ -37,8 +37,8 @@ class RegisterClientToSession {
         if(canRegister){
             RegisterToSession.do_action(Actions.registerClientToSession,session,client);
             GymLogger.getInstance().log("Registered client: "+client.getName()+" to session: "
-                    +session.getSessionType()+" on "+session.getDate()+" for price: "+session.getSessionType().getPrice());
-            Gym.getInstance().payforclass(session.getSessionType().getPrice());
+                    +session.getSessionType()+" on "+session.getDate()+" for price: "+session.getPrice());
+            Gym.getInstance().payforclass(session.getPrice());
             return true;
         }
         return false;
@@ -64,7 +64,7 @@ class RegisterClientToSession {
     }
 
     private static boolean get_enough_money_check(Session session, Client client) {
-        if (client.getMoney()>=session.getSessionType().getPrice())
+        if (client.getMoney()>=session.getPrice())
             return true;
         GymLogger.getInstance().log("Failed registration: Client doesn't have enough balance");
         return false;

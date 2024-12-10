@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Session extends Subject {
+public abstract class Session extends Subject {
     private final SessionType sessionType;
     private LocalDateTime date;
     private ForumType forumType;
@@ -22,7 +22,12 @@ public class Session extends Subject {
         this.date = LocalDateTime.parse(date, formatter);
         this.forumType = forumType;
         clients = new ArrayList<Client>();
+
     }
+    /////////////////////// Abstract Methods //////////////
+    public abstract int getPrice();
+    public abstract int getCapacity();
+
 
     /////////////////////// Getters //////////////////////
     public SessionType getSessionType() {
@@ -60,30 +65,8 @@ public class Session extends Subject {
      * @return true if the lesson still available
      */
     public boolean is_available() {
-        return sessionType.getCapacity()>clients.size();
+        return this.getCapacity()>clients.size();
     }
-
-//    protected boolean is_over(){
-//        LocalDate today = LocalDate.now();
-//        return today.isBefore(ChronoLocalDate.from(date));
-//    }
-//    protected boolean is_sign(Client client) {
-//        return clients.contains(client);
-//    }
-//    public boolean sign_to_session(Client client) {
-//        if(is_available()) {
-//            clients.add(client);
-//            return true;
-//        }
-//        return false;
-//    }
-//    protected boolean remove_client(Client client) {
-//        if(sign_to_session(client)) {
-//            clients.remove(client);
-//            return true;
-//        }
-//        return false;
-//    }
 
     public boolean equals(Session session) {
         return (this.getSessionType().equals(session.getSessionType()) && this.getDate().equals(session.getDate())
@@ -92,7 +75,7 @@ public class Session extends Subject {
 
     public String toString() {
         String d=formatter.format(date);
-        String p=(clients.size())+"/"+(sessionType.getCapacity());
+        String p=(clients.size())+"/"+(this.getCapacity());
         String s="Session Type: "+this.getSessionType()+" | Date: "+d+" | Forum: "+this.forumType+" | Instructor: "
                 +this.instructor.getName()+" | Participants: "+p;
         return s+"\n";
@@ -101,7 +84,4 @@ public class Session extends Subject {
     public void notify(String message) {
         this.notifyObservers(message);
     }
-
-
-
 }

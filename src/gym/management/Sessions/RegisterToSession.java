@@ -16,7 +16,7 @@ public class RegisterToSession {
     public static void do_action(Actions a, Session session, Client client) {
         if(a.equals(Actions.registerClientToSession)){
             session.addClient(client);
-            client.setBalance(session.getSessionType().getPrice());
+            client.setBalance(session.getPrice());
         }
     }
 }

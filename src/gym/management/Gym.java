@@ -19,7 +19,7 @@ public class Gym extends Subject{
     private List<Session> sessions;
 
     private Gym(){
-        balance=9420;
+        balance=0;
         clients=new ArrayList<>();
         instructors=new ArrayList<>();
         sessions=new ArrayList<>();

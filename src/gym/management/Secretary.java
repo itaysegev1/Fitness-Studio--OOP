@@ -118,9 +118,9 @@ public class Secretary{
     }
     public void paySalaries() throws InvalidAgeException, InstructorNotQualifiedException, DuplicateClientException, ClientNotRegisteredException {
         check_valid();
-        List<Object> list=new ArrayList<>();
-        list.add(Actions.paySalaries);
-        FactoryOfActions.createActions(list);
+//        List<Object> list=new ArrayList<>();
+//        list.add(Actions.paySalaries);
+//        FactoryOfActions.createActions(list);
         logger.log("Salaries have been paid to all employees");
     }
 
