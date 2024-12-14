@@ -103,12 +103,6 @@ public class RealSecretary implements Secretary {
         logger.printLog();
     }
 
-    protected void fire_secretary() {
-        this.person = null;
-        gym = null;
-        salary = 0;
-        logger=null;
-    }
     public String toString() {
         String s = this.person.toString();
         s += " | Role: Secretary | Salary per Month: " + salary;
