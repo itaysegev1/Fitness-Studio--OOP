@@ -56,9 +56,9 @@ public class SecretaryProxy implements Secretary {
     }
 
     @Override
-    public Instructor fireInstructor(Instructor instructor) {
+    public void fireInstructor(Instructor instructor) {
         checkValid();
-        return realSecretary.fireInstructor(instructor);
+        realSecretary.fireInstructor(instructor);
     }
 
     @Override
@@ -69,8 +69,9 @@ public class SecretaryProxy implements Secretary {
     }
 
     @Override
-    public Session deleteSession(Session session) {
-        return null;
+    public void deleteSession(Session session) {
+        checkValid();
+        realSecretary.deleteSession(session);
     }
 
     @Override

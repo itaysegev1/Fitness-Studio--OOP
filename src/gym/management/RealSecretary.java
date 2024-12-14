@@ -47,8 +47,7 @@ public class RealSecretary implements Secretary {
     }
 
     @Override
-    public Instructor fireInstructor(Instructor instructor) {
-        return null;
+    public void fireInstructor(Instructor instructor) {
     }
 
     @Override
@@ -57,8 +56,7 @@ public class RealSecretary implements Secretary {
     }
 
     @Override
-    public Session deleteSession(Session session) {
-        return null;
+    public void deleteSession(Session session) {
     }
 
     @Override
