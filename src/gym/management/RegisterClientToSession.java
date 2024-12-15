@@ -1,9 +1,7 @@
 package gym.management;
 
-import gym.Exception.ClientCannotRegisteredToClassException;
 import gym.Exception.ClientNotRegisteredException;
 import gym.Exception.DuplicateClientException;
-import gym.Exception.DuplicateClientLessonException;
 import gym.customers.Client;
 import gym.management.Sessions.ForumType;
 import gym.management.Sessions.RegisterToSession;
@@ -97,13 +95,13 @@ class RegisterClientToSession {
      * @param session the session that the client need to register to
      * @param client the client that trying to register
      * @return True if the client not registered to the lesson
-     * @throws DuplicateClientLessonException if the client register to the session already
+     * @throws DuplicateClientException if the client register to the session already
      */
-    private static boolean is_not_registered_check(Session session, Client client) throws DuplicateClientLessonException {
+    private static boolean is_not_registered_check(Session session, Client client) throws DuplicateClientException {
         List<Client> clients=session.getClients();
         for(Client c:clients){
             if(c.equals(client)){
-                throw new DuplicateClientLessonException();
+                throw new DuplicateClientException("Error: The client is already registered for this lesson");
             }
         }
         return true;
@@ -113,13 +111,13 @@ class RegisterClientToSession {
      * This method checks if the client is register with the gym
      * @param client the client that trying to register
      * @return True if the client register to the gym
-     * @throws ClientCannotRegisteredToClassException if the client not registered to the gym
+     * @throws ClientNotRegisteredException if the client not registered to the gym
      */
     private static boolean is_registered_to_gym_check(Client client)
-            throws ClientCannotRegisteredToClassException {
+            throws ClientNotRegisteredException {
         Gym gym=Gym.getInstance();
         if(!gym.IsContainClient(client))
-            throw new ClientCannotRegisteredToClassException();
+            throw new ClientNotRegisteredException("Error: The client is not registered with the gym and cannot enroll in lessons");
         return true;
     }
 

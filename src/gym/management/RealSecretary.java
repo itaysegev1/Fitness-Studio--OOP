@@ -37,7 +37,7 @@ public class RealSecretary implements Secretary {
     }
 
     @Override
-    public void unregisterClient(Client client) throws ClientNotRegisteredToGymException {
+    public void unregisterClient(Client client) throws ClientNotRegisteredException {
         UnregisteredClient.Do(client);
     }
 
