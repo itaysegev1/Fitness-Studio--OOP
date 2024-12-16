@@ -1,6 +1,7 @@
 package gym.management;
 
 import gym.customers.Client;
+import gym.customers.Money_Account;
 import gym.customers.Person;
 import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
@@ -15,7 +16,7 @@ public class Gym extends Subject {
     private static final Gym gym = new Gym();
     private RealSecretary secretary;
     private SecretaryProxy secretaryProxy;
-    private int balance;
+    private Money_Account balance;
     private String name;
     private List<Client> clients;
     private List<Instructor> instructors;
@@ -25,7 +26,7 @@ public class Gym extends Subject {
      * this is a private constructor of the gym cause there is only one gym.
      */
     private Gym() {
-        balance = 0;
+        balance = new Money_Account(0);
         clients = new ArrayList<>();
         instructors = new ArrayList<>();
         sessions = new ArrayList<>();
@@ -46,7 +47,7 @@ public class Gym extends Subject {
     }
 
     protected int getBalance() {
-        return balance;
+        return balance.getBalance();
     }
 
     public Secretary getSecretary() {
@@ -60,7 +61,7 @@ public class Gym extends Subject {
      * @param balance how much did they pay
      */
     protected void payforclass(int balance) {
-        this.balance += balance;
+        this.balance.addMoney(balance);
     }
 
     /**
@@ -69,7 +70,7 @@ public class Gym extends Subject {
      * @param balance how much they needed to get paid
      */
     protected void paySalary(int balance) {
-        this.balance -= balance;
+        this.balance.subMoney(balance);
     }
 
     public void setName(String name) {
@@ -246,20 +247,22 @@ public class Gym extends Subject {
      */
     public String toString() {
         String s = "Gym Name: " + name + "\n";
-        s += "Gym Secretary: " + secretary;
-        s += "Gym Balance: " + balance + "\n";
+        s += "Gym Secretary: " + secretary+"\n";
+        s += "Gym Balance: " + balance.getBalance() + "\n";
         s += "\nClients Data:\n";
         for (Client c : clients) {
-            s += c.toString();
+            s += c.toString()+"\n";
         }
         s += "\nEmployees Data:\n";
         for (Instructor i : instructors) {
-            s += i.toString();
+            s += i.toString()+"\n";
         }
-        s += secretary.toString();
+        s += secretary.toString()+"\n";
         s += "\nSessions Data:\n";
-        for (Session session : sessions) {
-            s += session.toString();
+        for (int i = 0; i < sessions.size()-1; i++) {
+            s+= sessions.get(i).toString()+"\n";
+        } {
+            s += sessions.getLast().toString();
         }
         return s;
     }

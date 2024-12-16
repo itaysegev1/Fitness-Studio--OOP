@@ -93,7 +93,7 @@ import java.util.List;
         String p=(clients.size())+"/"+(this.getCapacity());
         String s="Session Type: "+this.getClass().getSimpleName()+" | Date: "+d+" | Forum: "+this.forumType+" | Instructor: "
                 +this.instructor.getName()+" | Participants: "+p;
-        return s+"\n";
+        return s;
     }
 
     /**

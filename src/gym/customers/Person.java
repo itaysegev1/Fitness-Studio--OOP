@@ -9,7 +9,7 @@ import java.util.Date;
 public class Person {
     private int Id;
     private String Name;
-    private Integer Balance;
+    protected Money_Account Balance;
     protected Gender Gender;
     private Date BirthDate;
     private static int ID=1111;
@@ -25,7 +25,7 @@ public class Person {
     public Person(String name, int money, Gender gender, String birth) {
         Id =ID;
         this.Name = name;
-        this.Balance = money;
+        this.Balance = new Money_Account(money);
         this.Gender = gender;
         ID++;
         try {
@@ -54,7 +54,7 @@ public class Person {
         return Name;
     }
     public int getBalance() {
-        return Balance;
+        return Balance.getBalance();
     }
     public Gender getGender() {
         return Gender;
@@ -74,8 +74,18 @@ public class Person {
     }
 
     ///////////////// Setters //////////////////////
-    public void setBalance(int balance) {
-        Balance += balance;
+    public void pay_for_class(int balance) {
+//        Balance += balance;
+    }
+
+    /**
+     * This method compare between two persons and check if there are the same
+     * @param p1- the second person
+     * @return - a boolean answer.
+     */
+    public boolean equals(Person p1){
+        return (p1.Id == this.Id && p1.Name == this.Name && p1.Balance == this.Balance && p1.Gender == this.Gender
+                && p1.BirthDate == this.BirthDate);
     }
 
     /**
@@ -85,7 +95,7 @@ public class Person {
     public String toString() {
         String bd= DATE_FORMAT.format(BirthDate);
         return ("ID: "+this.Id +" | Name: "+this.Name +" | Gender: "+this.Gender +" | Birthday: "+bd+" | Age: "
-                +this.age()+" | Balance: "+this.Balance);
+                +this.age()+" | Balance: "+this.Balance.getBalance());
     }
 
 

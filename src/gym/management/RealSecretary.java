@@ -27,7 +27,7 @@ public class RealSecretary implements Secretary {
 
     @Override
     public int get_monthly_payment() {
-        person.setBalance(salary);
+        person.pay_for_class(salary);
         return salary;
     }
 
@@ -106,6 +106,6 @@ public class RealSecretary implements Secretary {
     public String toString() {
         String s = this.person.toString();
         s += " | Role: Secretary | Salary per Month: " + salary;
-        return s + "\n";
+        return s ;
     }
 }

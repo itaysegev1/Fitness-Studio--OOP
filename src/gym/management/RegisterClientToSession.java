@@ -84,7 +84,7 @@ class RegisterClientToSession {
      * @return True if the client have enough money
      */
     private static boolean get_enough_money_check(Session session, Client client) {
-        if (client.getMoney()>=session.getPrice())
+        if (client.getBalance()>=session.getPrice())
             return true;
         GymLogger.getInstance().log("Failed registration: Client doesn't have enough balance");
         return false;

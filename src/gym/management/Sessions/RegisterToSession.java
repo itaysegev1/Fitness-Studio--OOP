@@ -13,6 +13,6 @@ public class RegisterToSession {
      */
     public static void do_action(Session session, Client client) {
         session.addClient(client);
-        client.setBalance(session.getPrice());
+        client.pay_for_class(session.getPrice());
     }
 }
