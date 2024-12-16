@@ -9,7 +9,7 @@ import java.util.Date;
 public class Person {
     private int Id;
     private String Name;
-    private int Balance;
+    private Integer Balance;
     protected Gender Gender;
     private Date BirthDate;
     private static int ID=1111;

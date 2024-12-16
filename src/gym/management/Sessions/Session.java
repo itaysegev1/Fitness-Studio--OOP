@@ -12,7 +12,7 @@ import java.util.List;
  * This is an abstract class that set 2 methods of the under sessions need to return, their price and capacity
  * in this class we are creating all the share methods of all the lessons types
  */
-public abstract class Session extends Subject {
+    public abstract class Session extends Subject {
     private LocalDateTime date;
     private ForumType forumType;
     private Instructor instructor;
