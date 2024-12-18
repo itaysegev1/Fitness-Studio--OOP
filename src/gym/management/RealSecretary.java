@@ -12,14 +12,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class RealSecretary implements Secretary {
-    private Person person;
+public class RealSecretary extends Person implements Secretary {
     private Gym gym;
     private int salary;
     private GymLogger logger;
 
     protected RealSecretary(Person person, int salary) {
-        this.person = person;
+        super(person);
         this.salary = salary;
         gym = Gym.getInstance();
         logger = GymLogger.getInstance();
@@ -27,7 +26,7 @@ public class RealSecretary implements Secretary {
 
     @Override
     public int get_monthly_payment() {
-        person.pay_for_class(salary);
+        this.pay_for_class(salary);
         return salary;
     }
 
@@ -104,8 +103,6 @@ public class RealSecretary implements Secretary {
     }
 
     public String toString() {
-        String s = this.person.toString();
-        s += " | Role: Secretary | Salary per Month: " + salary;
-        return s ;
+        return super.toString() +" | Role: Secretary | Salary per Month: " + salary;
     }
 }

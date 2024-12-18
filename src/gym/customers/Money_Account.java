@@ -6,12 +6,15 @@ public class Money_Account {
     public Money_Account(int balance) {
         this.balance = balance;
     }
+
     public int getBalance() {
         return balance;
     }
+
     public void addMoney(int amount) {
         balance += amount;
     }
+
     public void subMoney(int amount) {
         balance -= amount;
     }
