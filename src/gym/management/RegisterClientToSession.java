@@ -23,7 +23,9 @@ class RegisterClientToSession {
      */
     protected static void Do(Session session, Client client) throws ClientNotRegisteredException, DuplicateClientException {
         boolean canRegister = true;
-
+        if (!is_really_in_gym_check(session)){
+            canRegister = false;
+        }
         if (!is_registered_to_gym_check(client)) {
             canRegister = false;
         }
@@ -163,5 +165,10 @@ class RegisterClientToSession {
             }
         }
         return true;
+    }
+
+    private static boolean is_really_in_gym_check(Session session) {
+        Gym gym=Gym.getInstance();
+        return gym.getSessions().contains(session);
     }
 }
