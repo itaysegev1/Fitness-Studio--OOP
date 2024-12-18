@@ -1,4 +1,4 @@
-package gym.customers;
+package gym;
 
 public class Money_Account {
     private int balance;

@@ -1,9 +1,7 @@
 package gym.management.Sessions;
 import gym.customers.*;
 import gym.management.Subject;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;

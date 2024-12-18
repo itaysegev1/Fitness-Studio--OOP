@@ -1,4 +1,6 @@
 package gym.management.Sessions;
+
+
 /**
  * A class for Ninja type of lesson
  */

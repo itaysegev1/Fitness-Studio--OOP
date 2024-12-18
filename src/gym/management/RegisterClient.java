@@ -1,4 +1,5 @@
 package gym.management;
+
 import gym.Exception.DuplicateClientException;
 import gym.Exception.InvalidAgeException;
 import gym.customers.Client;

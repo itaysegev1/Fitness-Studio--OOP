@@ -1,11 +1,10 @@
 package gym.management;
 
 import gym.customers.Client;
-import gym.customers.Money_Account;
+import gym.Money_Account;
 import gym.customers.Person;
 import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
-
 import java.util.ArrayList;
 import java.util.List;
 

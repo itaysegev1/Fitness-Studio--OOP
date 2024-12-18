@@ -4,7 +4,6 @@ import gym.management.Observer;
 import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Session;
 import gym.management.Subject;
-
 import java.util.ArrayList;
 import java.util.List;
 

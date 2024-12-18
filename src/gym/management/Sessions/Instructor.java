@@ -1,9 +1,6 @@
 package gym.management.Sessions;
 
-import gym.customers.Gender;
 import gym.customers.Person;
-
-import java.util.Date;
 import java.util.List;
 
 public class Instructor extends Person {
