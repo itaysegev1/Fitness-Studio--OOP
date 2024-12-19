@@ -14,9 +14,11 @@ import java.util.List;
 
 public class SecretaryProxy implements Secretary {
     private RealSecretary realSecretary;
+    private String secretarydescription;
 
     public SecretaryProxy(RealSecretary realSecretary) {
         this.realSecretary = realSecretary;
+        this.secretarydescription=realSecretary.toString();
     }
 
     public void block() {
@@ -90,7 +92,7 @@ public class SecretaryProxy implements Secretary {
         realSecretary.printActions();
     }
     public String toString() {
-        return realSecretary.toString();
+        return this.secretarydescription;
     }
 }
 

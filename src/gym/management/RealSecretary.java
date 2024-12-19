@@ -84,10 +84,13 @@ public class RealSecretary extends Person implements Secretary {
 
     @Override
     public void notify(Session session, String message) {
-        String msg = ("A message was sent to everyone registered for session " + session.getClass().getSimpleName() + " on "
-                + session.getDate() + " : " + message);
-        logger.log(msg);
-        session.notify(message);
+        if(gym.getSessions().contains(session)) {
+            String msg = ("A message was sent to everyone registered for session " + session.getClass().getSimpleName() + " on "
+                    + session.getDate() + " : " + message);
+            logger.log(msg);
+            session.notify(message);
+        }
+
     }
 
     @Override

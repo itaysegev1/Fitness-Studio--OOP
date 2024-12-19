@@ -26,6 +26,7 @@ public class Main2 {
         startall(gym,sessions,people,instructors,clients);
         gym.setName("CrossFit");
         Secretary sec=gym.getSecretary();
+        secretaries.add(sec);
         boolean flag=true;
         while (flag){
             System.out.println("\nchoose a action to do:");
@@ -62,7 +63,7 @@ public class Main2 {
                     }catch (DuplicateClientException e){
                         System.out.println(e.getMessage());
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     if(c!=null) {
                         clients.add(c);
@@ -77,7 +78,7 @@ public class Main2 {
                     } catch (ClientNotRegisteredException e) {
                         System.out.println(e.getMessage());
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     break;
                 case 4:
@@ -85,7 +86,7 @@ public class Main2 {
                     try {
                         instructors.add(hireinstructor(instructors, people, sec));
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     System.out.println("This Instructor added successfully");
                     break;
@@ -98,7 +99,7 @@ public class Main2 {
                     } catch (InstructorNotQualifiedException e) {
                         System.out.println(e.getMessage());
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     if(session!=null) {
                         sessions.add(session);
@@ -114,7 +115,7 @@ public class Main2 {
                     } catch (ClientNotRegisteredException e) {
                         System.out.println(e.getMessage());
                     } catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     break;
                 case 7:
@@ -122,7 +123,7 @@ public class Main2 {
                     try {
                         notifyall(sec);
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     break;
                 case 8:
@@ -130,7 +131,7 @@ public class Main2 {
                     try {
                         notifydate(sec);
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     break;
                 case 9:
@@ -138,7 +139,7 @@ public class Main2 {
                     try {
                         notifysession(sec, sessions);
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     break;
                 case 10:
@@ -146,16 +147,18 @@ public class Main2 {
                     try {
                         sec.printActions();
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
                     }
                     break;
                 case 11:
                     System.out.println("you chose to set a new secretary");
                     secretaries.add(setsec(people,gym));
                     sec= gym.getSecretary();
+                    break;
                 case 12:
                     System.out.println("you chose to choose another secretary");
                     sec=choosesec(secretaries);
+                    break;
                 case 0:
                     flag=false;
                     break;
@@ -192,7 +195,12 @@ public class Main2 {
     public static Client createclient(List<Person> people,Secretary sec) throws InvalidAgeException, DuplicateClientException {
         System.out.println("choose the person you want to create from");
         for (int i = 0; i < people.size(); i++) {
-            System.out.println("\t"+(i+1)+". "+people.get(i));
+            if(people.get(i)!=null){
+                System.out.println("\t"+(i+1)+". "+people.get(i));
+            }
+            else
+                System.out.println("\t"+(i+1)+". null");
+
         }
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();

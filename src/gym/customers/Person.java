@@ -35,7 +35,7 @@ public class Person {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             this.BirthDate = dateFormat.parse(birth);
         } catch (ParseException e) {
-            BirthDate = null;
+            this.BirthDate = null;
         }
     }
 
@@ -70,10 +70,14 @@ public class Person {
      * @return  An integer of the age.
      */
     public int age(){
-        LocalDate birthLocalDate = BirthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate nowLocalDate = LocalDate.now();
-        return Period.between(birthLocalDate, nowLocalDate).getYears();
-    }
+        if(BirthDate != null){
+            LocalDate birthLocalDate = BirthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate nowLocalDate = LocalDate.now();
+            return Period.between(birthLocalDate, nowLocalDate).getYears();
+        }
+        return Integer.MAX_VALUE;
+        }
+
 
     ///////////////// Setters //////////////////////
     public void pay_for_class(int balance) {
@@ -95,7 +99,12 @@ public class Person {
      * @return Person describe string
      */
     public String toString() {
-        String bd= DATE_FORMAT.format(BirthDate);
+        String bd="";
+        if(this.BirthDate != null){
+            bd= DATE_FORMAT.format(BirthDate);
+        }
+        else
+            bd="Null";
         return ("ID: "+this.Id +" | Name: "+this.Name +" | Gender: "+this.Gender +" | Birthday: "+bd+" | Age: "
                 +this.age()+" | Balance: "+this.Balance.getBalance());
     }
