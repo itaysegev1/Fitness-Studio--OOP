@@ -22,36 +22,38 @@ class RegisterClientToSession {
      * @throws DuplicateClientException if the client is already register to the session
      */
     protected static void Do(Session session, Client client) throws ClientNotRegisteredException, DuplicateClientException {
-        boolean canRegister = true;
-        if (!is_really_in_gym_check(session)){
-            canRegister = false;
-        }
-        if (!is_registered_to_gym_check(client)) {
-            canRegister = false;
-        }
-        if (!is_in_future_check(session)) {
-            canRegister = false;
-        }
-        if (!forum_type_check(session, client)) {
-            canRegister = false;
-        }
-        if (!get_enough_money_check(session, client)) {
-            canRegister = false;
-        }
-        if (!is_not_registered_check(session, client)) {
-            canRegister = false;
-        }
-        if (!have_enough_space_check(session)) {
-            canRegister = false;
-        }
-        if(!not_registered_to_other_lesson(session, client)) {
-            canRegister = false;
-        }
-        if(canRegister){
-            RegisterToSession.do_action(session,client);
-            GymLogger.getInstance().log("Registered client: "+client.getName()+" to session: "
-                    +session.getClass().getSimpleName()+" on "+session.getDate()+" for price: "+session.getPrice());
-            Gym.getInstance().payforclass(session.getPrice());
+        if(client!=null &&session!=null) {
+            boolean canRegister = true;
+            if (!is_really_in_gym_check(session)) {
+                canRegister = false;
+            }
+            if (!is_registered_to_gym_check(client)) {
+                canRegister = false;
+            }
+            if (!is_in_future_check(session)) {
+                canRegister = false;
+            }
+            if (!forum_type_check(session, client)) {
+                canRegister = false;
+            }
+            if (!get_enough_money_check(session, client)) {
+                canRegister = false;
+            }
+            if (!is_not_registered_check(session, client)) {
+                canRegister = false;
+            }
+            if (!have_enough_space_check(session)) {
+                canRegister = false;
+            }
+            if (!not_registered_to_other_lesson(session, client)) {
+                canRegister = false;
+            }
+            if (canRegister) {
+                RegisterToSession.do_action(session, client);
+                GymLogger.getInstance().log("Registered client: " + client.getName() + " to session: "
+                        + session.getClass().getSimpleName() + " on " + session.getDate() + " for price: " + session.getPrice());
+                Gym.getInstance().payforclass(session.getPrice());
+            }
         }
     }
 
@@ -100,6 +102,7 @@ class RegisterClientToSession {
      * @throws DuplicateClientException if the client register to the session already
      */
     private static boolean is_not_registered_check(Session session, Client client) throws DuplicateClientException {
+
         List<Client> clients=session.getClients();
         for(Client c:clients){
             if(c.equals(client)){

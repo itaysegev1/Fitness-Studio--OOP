@@ -19,12 +19,17 @@ class RegisterClient {
      * @throws DuplicateClientException if the client already registered to the gym
      */
     protected static Client Do(Person person) throws InvalidAgeException, DuplicateClientException {
-        Client client= CreateClient.do_action(person);
-        Gym gym=Gym.getInstance();
-        if(gym.IsContainClient(client))
-            throw new DuplicateClientException("Error: The client is already registered");
-        gym.addClient(client);
-        GymLogger.getInstance().log("Registered new client: "+client.getName());
-        return client;
+        try {
+            Client client = CreateClient.do_action(person);
+            Gym gym = Gym.getInstance();
+            if (gym.IsContainClient(client))
+                throw new DuplicateClientException("Error: The client is already registered");
+            gym.addClient(client);
+            GymLogger.getInstance().log("Registered new client: " + client.getName());
+            return client;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

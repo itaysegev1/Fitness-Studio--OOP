@@ -13,8 +13,10 @@ public class Instructor extends Person {
      * @param salary salary per hour
      * @param sessionTypes list of the session types he can coach
      */
-    protected Instructor(Person p, int salary, List<SessionType> sessionTypes) {
+    protected Instructor(Person p, int salary, List<SessionType> sessionTypes) throws IllegalArgumentException{
         super(p);
+        if(p.getBirthDate()==null)
+            throw new IllegalArgumentException("Invalid birth date");
         this.salary = salary;
         this.sessionTypes = sessionTypes;
     }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 
 public class Person {
@@ -34,8 +35,7 @@ public class Person {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             this.BirthDate = dateFormat.parse(birth);
         } catch (ParseException e) {
-            System.out.println("Invalid date format for birthDate: " + birth);
-            this.BirthDate = null; // or assign a default value
+            BirthDate = null;
         }
     }
 

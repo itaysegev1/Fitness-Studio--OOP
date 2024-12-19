@@ -49,6 +49,7 @@ public class Main2 {
                     Person p=createp();
                     if(p!=null)
                         people.add(p);
+                    System.out.println("this person added successfully");
                     break;
                 case 2:
                     System.out.println("you chose to register client");
@@ -90,13 +91,18 @@ public class Main2 {
                     break;
                 case 5:
                     System.out.println("you chose to add session");
+                    Session session=null;
                     try{
-                        sessions.add(addsession(instructors,sec));
-                        System.out.println("This Session added successfully");
+                        session=addsession(instructors,sec);
+
                     } catch (InstructorNotQualifiedException e) {
                         System.out.println(e.getMessage());
                     }catch (NullPointerException e){
                         System.out.println(e.getMessage());
+                    }
+                    if(session!=null) {
+                        sessions.add(session);
+                        System.out.println("The session added successfully");
                     }
                     break;
                 case 6:

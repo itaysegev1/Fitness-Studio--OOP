@@ -14,7 +14,7 @@ public class CreateInstructor {
      * @param sessionTypes the session type that the instructor can do.
      * @return the instructor we made.
      */
-    public static Instructor do_action(Person p1, int salary, List<SessionType> sessionTypes){
+    public static Instructor do_action(Person p1, int salary, List<SessionType> sessionTypes)throws IllegalArgumentException{
             return new Instructor(p1,salary,sessionTypes);
     }
 }

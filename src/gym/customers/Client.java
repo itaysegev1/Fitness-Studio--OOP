@@ -16,8 +16,10 @@ public class Client extends Person implements Observer {
      * Constructor for Client, the client just rely on a person
      * @param person - the person that this client is.
      */
-    protected Client(Person person) {
+    protected Client(Person person) throws IllegalArgumentException{
         super(person);
+        if(person.getBirthDate() == null)
+                throw new IllegalArgumentException("Invalid birth date");
         sessions=new ArrayList<>();
         notification=new ArrayList<>();
     }

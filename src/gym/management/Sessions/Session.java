@@ -1,8 +1,11 @@
 package gym.management.Sessions;
 import gym.customers.*;
 import gym.management.Subject;
+
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,7 @@ import java.util.List;
      * @param forumType the forum type of this lesson
      * @param instructor the instructor of the lesson
      */
-    protected Session(String date, ForumType forumType, Instructor instructor) {
+    protected Session(String date, ForumType forumType, Instructor instructor) throws DateTimeParseException {
         this.instructor = instructor;
         this.date = LocalDateTime.parse(date, formatter);
         this.forumType = forumType;

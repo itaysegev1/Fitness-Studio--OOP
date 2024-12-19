@@ -2,6 +2,9 @@ package gym.management.Sessions;
 
 import gym.Exception.InstructorNotQualifiedException;
 
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
+
 public class FactoryOfLessons {
     /**
      * This method is responsible for creating new sessions, this is a FACTORY of sessions,
@@ -14,7 +17,7 @@ public class FactoryOfLessons {
      * @throws InstructorNotQualifiedException if the instructor not qualified to coach this session
      */
     public static Session createSession(SessionType sessionType, String time, ForumType forumType, Instructor instructor)
-            throws InstructorNotQualifiedException {
+            throws InstructorNotQualifiedException, DateTimeParseException {
 
         if (!instructor.getSessionTypes().contains(sessionType)) {
             throw new InstructorNotQualifiedException();

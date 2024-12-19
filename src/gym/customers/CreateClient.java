@@ -13,7 +13,9 @@ public class CreateClient {
      * @return  the client we made.
      * @throws InvalidAgeException if the age of the client is under 18 and he cant register to the Gym
      */
-    public static Client do_action(Person p1) throws InvalidAgeException {
+    public static Client do_action(Person p1) throws InvalidAgeException,IllegalArgumentException{
+        if(p1.getBirthDate()==null)
+            throw new IllegalArgumentException("Invalid birth date");
         if (p1.age() < 18)
             throw new InvalidAgeException();
         return new Client(p1);

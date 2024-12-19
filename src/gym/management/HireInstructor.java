@@ -21,12 +21,16 @@ class HireInstructor {
      * @return the new instructor
      */
     protected static Instructor Do(Person person,  int salary, List<SessionType> sessionTypes) {
-        Instructor i= CreateInstructor.do_action(person, salary, sessionTypes);
-        Gym gym=Gym.getInstance();
-        if(!gym.IsContainInstructor(i)){
-            gym.addInstructor(i);
-            GymLogger.getInstance().log("Hired new instructor: "+i.getName()+" with salary per hour: "+i.getSalary());
-            return i;
+        try {
+            Instructor i = CreateInstructor.do_action(person, salary, sessionTypes);
+            Gym gym = Gym.getInstance();
+            if (!gym.IsContainInstructor(i)) {
+                gym.addInstructor(i);
+                GymLogger.getInstance().log("Hired new instructor: " + i.getName() + " with salary per hour: " + i.getSalary());
+                return i;
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
         return null;
     }
