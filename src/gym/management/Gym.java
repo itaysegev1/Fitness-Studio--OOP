@@ -13,8 +13,7 @@ import java.util.List;
  */
 public class Gym extends Subject {
     private static final Gym gym = new Gym();
-    private RealSecretary secretary;
-    private SecretaryProxy secretaryProxy;
+    private Secretary secretary;
     private Money_Account balance;
     private String name;
     private List<Client> clients;
@@ -54,7 +53,7 @@ public class Gym extends Subject {
     }
 
     public Secretary getSecretary() {
-        return secretaryProxy;
+        return secretary;
     }
 
     //////////////// Setters //////////////////
@@ -87,16 +86,14 @@ public class Gym extends Subject {
      * @param salary how much get paid for month
      */
     public void setSecretary(Person p1, int salary) {
-        if(secretaryProxy == null) {
-            secretary = new RealSecretary(p1, salary);
-            secretaryProxy = new SecretaryProxy(secretary);
+        if(secretary == null) {
+            secretary = new SecretaryProxy(new RealSecretary(p1, salary));
             employs.add(secretary);
         }
         else {
             employs.remove(secretary);
-            secretaryProxy.block();
-            secretary = new RealSecretary(p1, salary);
-            secretaryProxy = new SecretaryProxy(secretary);
+            ((SecretaryProxy)secretary).block();
+            secretary = new SecretaryProxy(new RealSecretary(p1, salary));
             employs.add(secretary);
 
         }
