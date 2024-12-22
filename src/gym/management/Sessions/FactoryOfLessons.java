@@ -1,0 +1,36 @@
+package gym.management.Sessions;
+
+import gym.Exception.InstructorNotQualifiedException;
+
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
+
+public class FactoryOfLessons {
+    /**
+     * This method is responsible for creating new sessions, this is a FACTORY of sessions,
+     * for each type of lesson we build a match object.
+     * @param sessionType type of the session need to be created
+     * @param time the date of the session
+     * @param forumType the forum type for this session
+     * @param instructor the instructor that instruct
+     * @return the session that have been created
+     * @throws InstructorNotQualifiedException if the instructor not qualified to coach this session
+     */
+    public static Session createSession(SessionType sessionType, String time, ForumType forumType, Instructor instructor)
+            throws InstructorNotQualifiedException, DateTimeParseException {
+
+        if (!instructor.getSessionTypes().contains(sessionType)) {
+            throw new InstructorNotQualifiedException();
+        }
+
+        if(sessionType.equals(SessionType.Ninja))
+            return new Ninja(time, forumType, instructor);
+        if (sessionType.equals(SessionType.Pilates))
+            return new Pilates( time, forumType, instructor);
+        if(sessionType.equals(SessionType.ThaiBoxing))
+            return new ThaiBoxing(time, forumType, instructor);
+        if(sessionType.equals(SessionType.MachinePilates))
+            return new MachinePilates(time, forumType, instructor);
+        return null;
+    }
+}
