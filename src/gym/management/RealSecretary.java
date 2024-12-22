@@ -23,6 +23,12 @@ public class RealSecretary extends Person implements Secretary {
         logger = GymLogger.getInstance();
     }
 
+    protected void firesecretary() {
+        gym=null;
+        logger=null;
+        salary=0;
+    }
+
     @Override
     public int get_paid() {
         this.Balance.addMoney(salary);

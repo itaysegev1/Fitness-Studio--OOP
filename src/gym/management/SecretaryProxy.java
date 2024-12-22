@@ -22,6 +22,7 @@ public class SecretaryProxy implements Secretary {
     }
 
     public void block() {
+        realSecretary.firesecretary();
         realSecretary=null;
     }
 
