@@ -4,7 +4,7 @@
 The Gym Management System is a Java-based project that simulates the operations of a gym. The system is designed with key software design patterns and error handling mechanisms to ensure smooth management of the gym's activities.
 
 ### Key Features
-1. **<u>Singleton Pattern</u>**: Ensures only one instance of the gym exists throughout the application.
+1. **<u>Singleton Pattern</u>**: Ensures only one instance of the gym exists throughout the application, and ensure there is a single logger.
 2. **<u>Proxy Pattern</u>**: Manages a single secretary who performs gym operations. Permissions of the current secretary are blocked upon replacement.
 3. **<u>Factory Pattern</u>**: Used for creating new sessions.
 4. **<u>Observer Pattern</u>**: Implements the notification system for clients, allowing the secretary to send messages effectively.
@@ -35,7 +35,7 @@ The system handles various edge cases and errors using custom exceptions:
 ### Prerequisites
 - Java Development Kit (JDK) 8 or higher.
 - IDE (e.g., IntelliJ IDEA, Eclipse, or VS Code).
-- Linux, Sillicon, Windows operation system
+- Linux, Silicon, Windows operating system
 
 ### Installation
 1. Clone the repository:
@@ -51,11 +51,10 @@ The system handles various edge cases and errors using custom exceptions:
 4. Check the logs for a record of all actions performed.
 
 ### Design Pattern
-* **<u>Singleton:</u>** Ensures a single instance of the gym is maintained.
+* **<u>Singleton:</u>** Ensures a single instance of the gym and logger is maintained.
 * **<u>Proxy:</u>** Controls access to the secretary and manages permissions.
 * **<u>Factory:</u>** Simplifies the creation of new gym sessions.
 * **<u>Observer:</u>** Facilitates the notification system for clients.
-* **<u>Logger:</u>** Controls of written the gym logger
 
 ### Error Handling
   The system includes comprehensive error handling with descriptive exceptions to ensure smooth operation 
