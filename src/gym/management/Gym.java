@@ -14,21 +14,15 @@ import java.util.List;
  */
 public class Gym extends Subject {
     private static final Gym gym = new Gym();
+    private GymData data=GymData.getInstance();
     private Secretary secretary;
-    private Money_Account balance;
     private String name;
-    private List<Client> clients;
-    private List<Employ> employs;
-    private List<Session> sessions;
 
     /**
      * this is a private constructor of the gym cause there is only one gym.
      */
     private Gym() {
-        balance = new Money_Account(0);
-        clients = new ArrayList<>();
-        employs = new ArrayList<>();
-        sessions = new ArrayList<>();
+        data.setBalance(0);
     }
 
     /////////////// Getters /////////////////
@@ -39,18 +33,6 @@ public class Gym extends Subject {
      */
     public static Gym getInstance() {
         return gym;
-    }
-
-    protected List<Session> getSessions() {
-        return sessions;
-    }
-
-    protected List<Employ> getEmploys() {
-        return employs;
-    }
-
-    protected int getBalance() {
-        return balance.getBalance();
     }
 
     public Secretary getSecretary() {
@@ -64,7 +46,7 @@ public class Gym extends Subject {
      * @param balance how much did they pay
      */
     protected void payforclass(int balance) {
-        this.balance.addMoney(balance);
+        data.setBalance(balance);
     }
 
     /**
@@ -73,7 +55,7 @@ public class Gym extends Subject {
      * @param balance how much they needed to get paid
      */
     protected void paySalary(int balance) {
-        this.balance.subMoney(balance);
+        data.setBalance(-balance);
     }
 
     public void setName(String name) {
@@ -89,12 +71,12 @@ public class Gym extends Subject {
     public void setSecretary(Person p1, int salary) {
         if (secretary == null) {
             secretary = new SecretaryProxy(new RealSecretary(p1, salary));
-            employs.add(secretary);
+            data.addEmploy(secretary);
         } else {
-            employs.remove(secretary);
+            data.removeEmploy(secretary);
             ((SecretaryProxy) secretary).block();
             secretary = new SecretaryProxy(new RealSecretary(p1, salary));
-            employs.add(secretary);
+            data.addEmploy(secretary);
 
         }
         GymLogger.getInstance().log("A new secretary has started working at the gym: " + p1.getName());
@@ -106,7 +88,7 @@ public class Gym extends Subject {
      * @param client the client that needed to be added
      */
     protected void addClient(Client client) {
-        clients.add(client);
+        data.addClient(client);
         this.attach(client);
     }
 
@@ -117,13 +99,13 @@ public class Gym extends Subject {
      */
     protected void RemoveClient(Client client) {
         Client c = null;
-        for (Client c1 : clients) {
+        for (Client c1 : data.getClientList()) {
             if (c1.equals(client)) {
                 c = c1;
             }
         }
         if (c != null) {
-            clients.remove(c);
+            data.removeClient(c);
             this.detach(c);
         }
 
@@ -135,7 +117,7 @@ public class Gym extends Subject {
      * @param instructor the instructor that needed to be added
      */
     protected void addInstructor(Instructor instructor) {
-        employs.add(instructor);
+        data.addEmploy(instructor);
     }
 
     /**
@@ -145,9 +127,9 @@ public class Gym extends Subject {
      * @return if he removed
      */
     protected boolean removeInstructor(Instructor instructor) {
-        for (Employ i : employs) {
+        for (Employ i : data.getEmployList()) {
             if (i.equals(instructor)) {
-                employs.remove(i);
+                data.removeEmploy(i);
                 return true;
             }
         }
@@ -162,7 +144,7 @@ public class Gym extends Subject {
      */
     protected boolean addSession(Session session) {
         if (!IsContainSession(session)) {
-            sessions.add(session);
+            data.addSession(session);
             return true;
         }
         return false;
@@ -175,9 +157,9 @@ public class Gym extends Subject {
      * @return if it had been removed
      */
     protected boolean removeSession(Session session) {
-        for (Session session2 : sessions) {
+        for (Session session2 : data.getSessionList()) {
             if (session2.equals(session)) {
-                sessions.remove(session2);
+                data.removeSession(session2);
                 return true;
             }
         }
@@ -191,7 +173,7 @@ public class Gym extends Subject {
      * @return if the gym contains it or not
      */
     protected boolean IsContainClient(Client c1) {
-        for (Client c2 : clients) {
+        for (Client c2 : data.getClientList()) {
             if (c2.equals(c1)) {
                 return true;
             }
@@ -206,7 +188,7 @@ public class Gym extends Subject {
      * @return if the gym contains it or not
      */
     protected boolean IsContainInstructor(Instructor i1) {
-        for (Employ i2 : employs) {
+        for (Employ i2 : data.getEmployList()) {
             if (i1.equals(i2)) {
                 return true;
             }
@@ -221,7 +203,7 @@ public class Gym extends Subject {
      * @return if the gym contains it or not
      */
     protected boolean IsContainSession(Session s1) {
-        for (Session s2 : sessions) {
+        for (Session s2 : data.getSessionList()) {
             if (s2.equals(s1)) {
                 return true;
             }
@@ -252,22 +234,7 @@ public class Gym extends Subject {
     public String toString() {
         String s = "Gym Name: " + name + "\n";
         s += "Gym Secretary: " + secretary + "\n";
-        s += "Gym Balance: " + balance.getBalance() + "\n";
-        s += "\nClients Data:\n";
-        for (Client c : clients) {
-            s += c.toString() + "\n";
-        }
-        s += "\nEmployees Data:\n";
-        for (Employ i : employs) {
-            s += i.toString() + "\n";
-        }
-        s += "\nSessions Data:\n";
-        for (int i = 0; i < sessions.size() - 1; i++) {
-            s += sessions.get(i).toString() + "\n";
-        }
-        {
-            s += sessions.getLast().toString();
-        }
+        s+=data.toString();
         return s;
     }
 }

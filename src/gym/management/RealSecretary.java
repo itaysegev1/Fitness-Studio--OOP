@@ -16,18 +16,21 @@ public class RealSecretary extends Person implements Secretary {
     private Gym gym;
     private int salary;
     private GymLogger logger;
+    private GymData data;
 
     protected RealSecretary(Person person, int salary) {
         super(person);
         this.salary = salary;
         gym = Gym.getInstance();
         logger = GymLogger.getInstance();
+        data=GymData.getInstance();
     }
 
     protected void firesecretary() {
         gym = null;
         logger = null;
         salary = 0;
+        data=null;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class RealSecretary extends Person implements Secretary {
 
     @Override
     public int get_monthly_payment() {
-        this.pay_for_class(salary);
+        this.Balance.addMoney(salary);
         return salary;
     }
 
@@ -88,7 +91,7 @@ public class RealSecretary extends Person implements Secretary {
         LocalDate newdate = LocalDate.parse(date, dateFormatter);
         String msg = ("A message was sent to everyone registered for a session on " + newdate + " : " + message);
         logger.log(msg);
-        for (Session session : gym.getSessions()) {
+        for (Session session : data.getSessionList()) {
             if (session.getDate().toLocalDate().equals(newdate)) {
                 session.notify(message);
             }
@@ -97,7 +100,7 @@ public class RealSecretary extends Person implements Secretary {
 
     @Override
     public void notify(Session session, String message) {
-        if (gym.getSessions().contains(session)) {
+        if (data.getSessionList().contains(session)) {
             String msg = ("A message was sent to everyone registered for session " + session.getClass().getSimpleName() + " on "
                     + session.getDate() + " : " + message);
             logger.log(msg);
@@ -108,7 +111,7 @@ public class RealSecretary extends Person implements Secretary {
 
     @Override
     public void paySalaries() {
-        PaySalaries.Do();
+        PaySalaries.Do(data.getEmployList());
         logger.log("Salaries have been paid to all employees");
     }
 

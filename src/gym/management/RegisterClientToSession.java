@@ -180,6 +180,6 @@ class RegisterClientToSession {
 
     private static boolean is_really_in_gym_check(Session session) {
         Gym gym = Gym.getInstance();
-        return gym.getSessions().contains(session);
+        return gym.IsContainSession(session);
     }
 }

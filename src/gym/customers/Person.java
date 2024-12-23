@@ -87,9 +87,6 @@ public class Person {
 
 
     /// ////////////// Setters //////////////////////
-    public void pay_for_class(int balance) {
-//        Balance += balance;
-    }
 
     /**
      * This method compare between two persons and check if there are the same
