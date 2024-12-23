@@ -40,7 +40,7 @@ The system handles various edge cases and errors using custom exceptions:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone <(https://github.com/itaysegev1/Fitness-Studio/tree/main/src)>
+   git clone https://github.com/itaysegev1/Fitness-Studio/tree/main/src
 2. Open the project in your preferred IDE.
     ```bash
 3. Build and run the project.
