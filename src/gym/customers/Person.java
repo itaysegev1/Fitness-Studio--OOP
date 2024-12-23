@@ -1,4 +1,5 @@
 package gym.customers;
+
 import gym.Money_Account;
 
 import java.text.ParseException;
@@ -15,18 +16,19 @@ public class Person {
     protected Money_Account Balance;
     protected Gender Gender;
     private Date BirthDate;
-    private static int ID=1111;
+    private static int ID = 1111;
     private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
     /**
      * A regular constructor for a Person
-     * @param name the name of the person
-     * @param money the balance the person have
+     *
+     * @param name   the name of the person
+     * @param money  the balance the person have
      * @param gender the gender of the person
      * @param birth  a string of the person BD need to be in this format-"dd-MM-yyyy"
      */
     public Person(String name, int money, Gender gender, String birth) {
-        Id =ID;
+        Id = ID;
         this.Name = name;
         this.Balance = new Money_Account(money);
         this.Gender = gender;
@@ -41,72 +43,78 @@ public class Person {
 
     /**
      * Copy Constructor
+     *
      * @param person the person we want to get a deep copy of it.
      */
     public Person(Person person) {
-        this.Id =person.Id;
+        this.Id = person.Id;
         this.Name = person.Name;
         this.Balance = person.Balance;
         this.Gender = person.Gender;
         this.BirthDate = person.BirthDate;
     }
 
-    /////////////// Getters /////////////////
+    /// //////////// Getters /////////////////
     public String getName() {
         return Name;
     }
+
     public int getBalance() {
         return Balance.getBalance();
     }
+
     public Gender getGender() {
         return Gender;
     }
+
     public Date getBirthDate() {
         return BirthDate;
     }
 
     /**
      * This method compute this person age based on its B-Day and this current day
-     * @return  An integer of the age.
+     *
+     * @return An integer of the age.
      */
-    public int age(){
-        if(BirthDate != null){
+    public int age() {
+        if (BirthDate != null) {
             LocalDate birthLocalDate = BirthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate nowLocalDate = LocalDate.now();
             return Period.between(birthLocalDate, nowLocalDate).getYears();
         }
         return Integer.MAX_VALUE;
-        }
+    }
 
 
-    ///////////////// Setters //////////////////////
+    /// ////////////// Setters //////////////////////
     public void pay_for_class(int balance) {
 //        Balance += balance;
     }
 
     /**
      * This method compare between two persons and check if there are the same
+     *
      * @param p1- the second person
      * @return - a boolean answer.
      */
-    public boolean equals(Person p1){
+    public boolean equals(Person p1) {
         return (p1.Id == this.Id && p1.Name == this.Name && p1.Balance == this.Balance && p1.Gender == this.Gender
                 && p1.BirthDate == this.BirthDate);
     }
 
     /**
      * String that describe the peron: "ID: | Name: | Gender: | Birthday: | Age: | Balance: "
+     *
      * @return Person describe string
      */
     public String toString() {
-        String bd="";
-        if(this.BirthDate != null){
-            bd= DATE_FORMAT.format(BirthDate);
-        }
-        else
-            bd="Null";
-        return ("ID: "+this.Id +" | Name: "+this.Name +" | Gender: "+this.Gender +" | Birthday: "+bd+" | Age: "
-                +this.age()+" | Balance: "+this.Balance.getBalance());
+        String bd = "";
+        if (this.BirthDate != null) {
+            bd = DATE_FORMAT.format(BirthDate);
+        } else
+            bd = "Null";
+        return ("ID: " + this.Id + " | Name: " + this.Name + " | Gender: " + this.Gender + " | Birthday: " + bd + " | Age: "
+                + this.age() + " | Balance: " + this.Balance.getBalance());
     }
 
 

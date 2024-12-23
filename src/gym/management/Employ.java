@@ -7,6 +7,7 @@ public interface Employ {
 
     /**
      * This Method take care of paying this employ his salary
+     *
      * @return the salary that have been paid to the employ
      */
     public int get_paid();

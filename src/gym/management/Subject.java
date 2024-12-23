@@ -32,7 +32,7 @@ public abstract class Subject {
      */
     public void notifyObservers(String message) {
         for (Observer observer : observers) {
-            observer.update(this,message);
+            observer.update(this, message);
         }
     }
 }

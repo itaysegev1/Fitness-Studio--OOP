@@ -7,6 +7,7 @@ import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
 import gym.management.Sessions.SessionType;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -24,9 +25,9 @@ public class RealSecretary extends Person implements Secretary {
     }
 
     protected void firesecretary() {
-        gym=null;
-        logger=null;
-        salary=0;
+        gym = null;
+        logger = null;
+        salary = 0;
     }
 
     @Override
@@ -62,7 +63,7 @@ public class RealSecretary extends Person implements Secretary {
 
     @Override
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor) throws InstructorNotQualifiedException {
-        return AddSession.Do(sessionType,date,forumType,instructor);
+        return AddSession.Do(sessionType, date, forumType, instructor);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class RealSecretary extends Person implements Secretary {
 
     @Override
     public void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException {
-        RegisterClientToSession.Do(session,client);
+        RegisterClientToSession.Do(session, client);
     }
 
     @Override
@@ -96,7 +97,7 @@ public class RealSecretary extends Person implements Secretary {
 
     @Override
     public void notify(Session session, String message) {
-        if(gym.getSessions().contains(session)) {
+        if (gym.getSessions().contains(session)) {
             String msg = ("A message was sent to everyone registered for session " + session.getClass().getSimpleName() + " on "
                     + session.getDate() + " : " + message);
             logger.log(msg);
@@ -117,6 +118,6 @@ public class RealSecretary extends Person implements Secretary {
     }
 
     public String toString() {
-        return super.toString() +" | Role: Secretary | Salary per Month: " + salary;
+        return super.toString() + " | Role: Secretary | Salary per Month: " + salary;
     }
 }

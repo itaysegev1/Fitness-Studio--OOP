@@ -5,5 +5,5 @@ package gym.management.Sessions;
  * Female, Male, Seniors, All
  */
 public enum ForumType {
-     Female , Male , Seniors, All
+    Female, Male, Seniors, All
 }

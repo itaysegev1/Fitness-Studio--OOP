@@ -8,14 +8,14 @@ import java.util.List;
  * it saves all the history of the gym
  */
 public class GymLogger {
-    private static GymLogger logger=new GymLogger();
-   private List<String>log;
+    private static GymLogger logger = new GymLogger();
+    private List<String> log;
 
     /**
      * private constructor cause there is only one logger
      */
     private GymLogger() {
-        log=new ArrayList<>();
+        log = new ArrayList<>();
     }
 
     /**
@@ -27,6 +27,7 @@ public class GymLogger {
 
     /**
      * This method adds new message to the logger
+     *
      * @param msg the message needed to be added
      */
     protected void log(String msg) {
@@ -36,8 +37,8 @@ public class GymLogger {
     /**
      * This method go through all the log and print it
      */
-    protected void printLog(){
-        for(String msg:log) {
+    protected void printLog() {
+        for (String msg : log) {
             System.out.println(msg);
         }
     }

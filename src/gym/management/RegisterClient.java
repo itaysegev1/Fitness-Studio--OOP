@@ -13,9 +13,10 @@ class RegisterClient {
     /**
      * In this method we created a new client (only if he is above 18 years old, and not already in the gym)
      * and added him to the gym.
+     *
      * @param person that the client is created from
      * @return the client that has been added
-     * @throws InvalidAgeException if the person is under 18 years old
+     * @throws InvalidAgeException      if the person is under 18 years old
      * @throws DuplicateClientException if the client already registered to the gym
      */
     protected static Client Do(Person person) throws InvalidAgeException, DuplicateClientException {
@@ -27,7 +28,7 @@ class RegisterClient {
             gym.addClient(client);
             GymLogger.getInstance().log("Registered new client: " + client.getName());
             return client;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return null;

@@ -10,6 +10,7 @@ import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
 import gym.management.Sessions.SessionType;
+
 import java.util.List;
 
 public class SecretaryProxy implements Secretary {
@@ -18,12 +19,12 @@ public class SecretaryProxy implements Secretary {
 
     public SecretaryProxy(RealSecretary realSecretary) {
         this.realSecretary = realSecretary;
-        this.secretarydescription=realSecretary.toString();
+        this.secretarydescription = realSecretary.toString();
     }
 
     public void block() {
         realSecretary.firesecretary();
-        realSecretary=null;
+        realSecretary = null;
     }
 
     @Override
@@ -97,6 +98,7 @@ public class SecretaryProxy implements Secretary {
     public void printActions() {
         realSecretary.printActions();
     }
+
     public String toString() {
         return this.secretarydescription;
     }

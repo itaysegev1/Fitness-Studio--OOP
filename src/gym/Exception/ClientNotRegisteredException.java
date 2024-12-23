@@ -1,9 +1,9 @@
 package gym.Exception;
 
-public class ClientNotRegisteredException extends Exception{
-    public ClientNotRegisteredException(String message){
+public class ClientNotRegisteredException extends Exception {
+    public ClientNotRegisteredException(String message) {
         super(message);
     }
 
-    }
+}
 

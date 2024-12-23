@@ -5,6 +5,7 @@ import gym.Money_Account;
 import gym.customers.Person;
 import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,13 +87,12 @@ public class Gym extends Subject {
      * @param salary how much get paid for month
      */
     public void setSecretary(Person p1, int salary) {
-        if(secretary == null) {
+        if (secretary == null) {
             secretary = new SecretaryProxy(new RealSecretary(p1, salary));
             employs.add(secretary);
-        }
-        else {
+        } else {
             employs.remove(secretary);
-            ((SecretaryProxy)secretary).block();
+            ((SecretaryProxy) secretary).block();
             secretary = new SecretaryProxy(new RealSecretary(p1, salary));
             employs.add(secretary);
 
@@ -251,20 +251,21 @@ public class Gym extends Subject {
      */
     public String toString() {
         String s = "Gym Name: " + name + "\n";
-        s += "Gym Secretary: " + secretary+"\n";
+        s += "Gym Secretary: " + secretary + "\n";
         s += "Gym Balance: " + balance.getBalance() + "\n";
         s += "\nClients Data:\n";
         for (Client c : clients) {
-            s += c.toString()+"\n";
+            s += c.toString() + "\n";
         }
         s += "\nEmployees Data:\n";
         for (Employ i : employs) {
-            s += i.toString()+"\n";
+            s += i.toString() + "\n";
         }
         s += "\nSessions Data:\n";
-        for (int i = 0; i < sessions.size()-1; i++) {
-            s+= sessions.get(i).toString()+"\n";
-        } {
+        for (int i = 0; i < sessions.size() - 1; i++) {
+            s += sessions.get(i).toString() + "\n";
+        }
+        {
             s += sessions.getLast().toString();
         }
         return s;
