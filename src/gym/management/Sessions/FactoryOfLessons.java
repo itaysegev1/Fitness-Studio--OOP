@@ -22,15 +22,16 @@ public class FactoryOfLessons {
         if (!instructor.getSessionTypes().contains(sessionType)) {
             throw new InstructorNotQualifiedException();
         }
-
-        if(sessionType.equals(SessionType.Ninja))
-            return new Ninja(time, forumType, instructor);
-        if (sessionType.equals(SessionType.Pilates))
-            return new Pilates( time, forumType, instructor);
-        if(sessionType.equals(SessionType.ThaiBoxing))
-            return new ThaiBoxing(time, forumType, instructor);
-        if(sessionType.equals(SessionType.MachinePilates))
-            return new MachinePilates(time, forumType, instructor);
+        switch (sessionType) {
+            case Ninja:
+                return new Ninja(time, forumType, instructor);
+            case Pilates:
+                return new Pilates(time, forumType, instructor);
+            case ThaiBoxing:
+                return new ThaiBoxing(time, forumType, instructor);
+            case MachinePilates:
+                return new MachinePilates(time, forumType, instructor);
+        }
         return null;
     }
 }
