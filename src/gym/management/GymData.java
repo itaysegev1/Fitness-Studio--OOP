@@ -3,10 +3,14 @@ package gym.management;
 import gym.Money_Account;
 import gym.customers.Client;
 import gym.management.Sessions.Session;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The GymData class serves as a centralized data management system for a gym, handling employees,
+ * sessions, clients, and the financial account of the gym. It uses the Singleton design pattern
+ * to ensure a single instance of the class exists throughout the application lifecycle.
+ */
 public class GymData {
     protected static GymData instance = new GymData();
     List<Employ> employList;
