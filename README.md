@@ -35,6 +35,7 @@ The system handles various edge cases and errors using custom exceptions:
 ### Prerequisites
 - Java Development Kit (JDK) 8 or higher.
 - IDE (e.g., IntelliJ IDEA, Eclipse, or VS Code).
+- Linux, Sillicon, Windows operation system
 
 ### Installation
 1. Clone the repository:
@@ -59,9 +60,9 @@ The system handles various edge cases and errors using custom exceptions:
 * Logger : Controls of written the gym logger
 
 ### Error Handling
-    The system includes comprehensive error handling with descriptive exceptions to ensure smooth operation 
-    and some errors that can be made and not handled by exception, written to the gym logger
+  The system includes comprehensive error handling with descriptive exceptions to ensure smooth operation 
+  and some errors that can be made and not handled by exception, written to the gym logger
 
 ### Contributes
-    - Itay Segev
-    - Salome Timsit
+  - Itay Segev
+  - Salome Timsit
