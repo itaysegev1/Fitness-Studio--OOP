@@ -53,12 +53,6 @@ public interface Secretary extends Employ {
      */
     public Instructor hireInstructor(Person person, int salary, List<SessionType> sessionstype);
 
-    /**
-     * This method charge on fire instructor from the gym
-     *
-     * @param instructor the instructor need to be fired
-     */
-    public void fireInstructor(Instructor instructor);
 
     /**
      * This method charge on adding new sessions to the gym
@@ -72,12 +66,6 @@ public interface Secretary extends Employ {
      */
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor) throws InstructorNotQualifiedException;
 
-    /**
-     * This method charge on delete a session from the gym
-     *
-     * @param session the session need to be deleted
-     */
-    public void deleteSession(Session session);
 
     /**
      * This method charge on register a client to an existing session

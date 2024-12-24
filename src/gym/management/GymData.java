@@ -65,6 +65,14 @@ public class GymData {
     protected void removeSession(Session session) {
         sessionList.remove(session);
     }
+
+    /**
+     * Generates a comprehensive string representation of the gym's data including
+     * the current balance, information on all clients, employees, and sessions.
+     *
+     * @return A formatted string encapsulating the gym's balance, the detailed list
+     *         of clients, employees, and sessions.
+     */
     public String toString(){
         String s = "";
         s += "Gym Balance: " + Balance.getBalance() + "\n";

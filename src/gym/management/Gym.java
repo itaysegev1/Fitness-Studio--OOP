@@ -120,21 +120,6 @@ public class Gym extends Subject {
         data.addEmploy(instructor);
     }
 
-    /**
-     * This method remove the instructor from the gym.
-     *
-     * @param instructor the instructor needed to be removed
-     * @return if he removed
-     */
-    protected boolean removeInstructor(Instructor instructor) {
-        for (Employ i : data.getEmployList()) {
-            if (i.equals(instructor)) {
-                data.removeEmploy(i);
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
      * This method add new session to the gym
@@ -149,22 +134,7 @@ public class Gym extends Subject {
         }
         return false;
     }
-
-    /**
-     * This method remove this session from the sessions of the gym
-     *
-     * @param session the session needed to be removed
-     * @return if it had been removed
-     */
-    protected boolean removeSession(Session session) {
-        for (Session session2 : data.getSessionList()) {
-            if (session2.equals(session)) {
-                data.removeSession(session2);
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
     /**
      * This method check if there are client that it is the same in the gym

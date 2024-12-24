@@ -60,18 +60,12 @@ public class RealSecretary extends Person implements Secretary {
         return HireInstructor.Do(p1, salary, sessionstype);
     }
 
-    @Override
-    public void fireInstructor(Instructor instructor) {
-    }
 
     @Override
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor) throws InstructorNotQualifiedException {
         return AddSession.Do(sessionType, date, forumType, instructor);
     }
 
-    @Override
-    public void deleteSession(Session session) {
-    }
 
     @Override
     public void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException {

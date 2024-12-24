@@ -53,19 +53,9 @@ public class SecretaryProxy implements Secretary {
     }
 
     @Override
-    public void fireInstructor(Instructor instructor) {
-        realSecretary.fireInstructor(instructor);
-    }
-
-    @Override
     public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor)
             throws InstructorNotQualifiedException {
         return realSecretary.addSession(sessionType, date, forumType, instructor);
-    }
-
-    @Override
-    public void deleteSession(Session session) {
-        realSecretary.deleteSession(session);
     }
 
     @Override
