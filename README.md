@@ -45,12 +45,14 @@ The system handles various edge cases and errors using custom exceptions:
     - Thrown when attempting to register a client under 18 years old.
 
 2. **DuplicateClientException:**
-    - Thrown when trying to register a client who is already registered with the gym or a session.
+    - Thrown when trying to register a client who is already registered with the gym
+    - Thrown when trying to register a client who is already registered to a session.
 
 3. **InstructorNotQualifiedException:**
     - Thrown when an instructor is not qualified to lead a specific session type.
 
 4. **ClientNotRegisteredException:**
+    - Thrown when the secretary try to unregister an non-registered client
     - Thrown when a non-registered client attempts to join a session.
 
 ## Getting Started
