@@ -21,7 +21,7 @@ public class FactoryOfLessons {
             throws InstructorNotQualifiedException, DateTimeParseException {
 
         if (!instructor.getSessionTypes().contains(sessionType)) {
-            throw new InstructorNotQualifiedException();
+            throw new InstructorNotQualifiedException("Error: Instructor is not qualified to conduct this session type.");
         }
         switch (sessionType) {
             case Ninja:

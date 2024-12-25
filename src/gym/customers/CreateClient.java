@@ -18,7 +18,7 @@ public class CreateClient {
         if (p1.getBirthDate() == null)
             throw new IllegalArgumentException("Invalid birth date");
         if (p1.age() < 18)
-            throw new InvalidAgeException();
+            throw new InvalidAgeException("Error: Client must be at least 18 years old to register");
         return new Client(p1);
     }
 
