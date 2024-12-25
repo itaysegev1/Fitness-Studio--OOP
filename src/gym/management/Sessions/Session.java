@@ -19,6 +19,8 @@ public abstract class Session extends Subject {
     private ForumType forumType;
     private Instructor instructor;
     private List<Client> clients;
+    private int price;
+    private int capacity;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
@@ -28,18 +30,16 @@ public abstract class Session extends Subject {
      * @param forumType  the forum type of this lesson
      * @param instructor the instructor of the lesson
      */
-    protected Session(String date, ForumType forumType, Instructor instructor) throws DateTimeParseException {
+    protected Session(String date, ForumType forumType, Instructor instructor,int price,int capacity) throws DateTimeParseException {
         this.instructor = instructor;
         this.date = LocalDateTime.parse(date, formatter);
         this.forumType = forumType;
+        this.price = price;
+        this.capacity = capacity;
         clients = new ArrayList<Client>();
 
     }
 
-    /// //////////////////// Abstract Methods //////////////
-    public abstract int getPrice();
-
-    public abstract int getCapacity();
 
 
     /// //////////////////// Getters //////////////////////
@@ -59,6 +59,14 @@ public abstract class Session extends Subject {
         return clients;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
     /// //////////////////// Setters /////////////////
     protected void setInstructor(Instructor instructor) {
         this.instructor = instructor;
@@ -66,6 +74,14 @@ public abstract class Session extends Subject {
 
     protected void setDate(String date) {
         this.date = LocalDateTime.parse(date, formatter);
+    }
+
+    protected void setPrice(int price) {
+        this.price = price;
+    }
+
+    protected void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     protected void addClient(Client client) {
