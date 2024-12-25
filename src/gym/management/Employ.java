@@ -10,11 +10,11 @@ public interface Employ {
      *
      * @return the salary that have been paid to the employ
      */
-    public int get_paid();
+    int get_paid();
 
     /**
      * @return A string that describe this employ
      */
-    public String toString();
+    String toString();
 
 }

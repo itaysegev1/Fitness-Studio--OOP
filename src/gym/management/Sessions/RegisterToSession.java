@@ -1,5 +1,6 @@
 package gym.management.Sessions;
 
+import gym.customers.Add_session_Client;
 import gym.customers.Client;
 
 /**
@@ -14,6 +15,7 @@ public class RegisterToSession {
      */
     public static void do_action(Session session, Client client) {
         session.addClient(client);
+        Add_session_Client.Do(client, session);
         client.pay_for_class(session.getPrice());
     }
 }

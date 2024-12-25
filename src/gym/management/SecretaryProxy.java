@@ -15,15 +15,15 @@ import java.util.List;
 
 public class SecretaryProxy implements Secretary {
     private RealSecretary realSecretary;
-    private String secretarydescription;
+    private String secretaryDetails;
 
     public SecretaryProxy(RealSecretary realSecretary) {
         this.realSecretary = realSecretary;
-        this.secretarydescription = realSecretary.toString();
+        this.secretaryDetails = realSecretary.toString();
     }
 
     public void block() {
-        realSecretary.firesecretary();
+        realSecretary.fire_secretary();
         realSecretary = null;
     }
 
@@ -48,8 +48,8 @@ public class SecretaryProxy implements Secretary {
     }
 
     @Override
-    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype) {
-        return realSecretary.hireInstructor(p1, salary, sessionstype);
+    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionsType) {
+        return realSecretary.hireInstructor(p1, salary, sessionsType);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class SecretaryProxy implements Secretary {
     }
 
     public String toString() {
-        return this.secretarydescription;
+        return this.secretaryDetails;
     }
 }
 

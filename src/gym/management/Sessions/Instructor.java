@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Instructor extends Person implements Employ {
-    protected int salary;
-    protected List<SessionType> sessionTypes;
-    protected List<Session> sessions;
+    private int salary;
+    private List<SessionType> sessionTypes;
+    private List<Session> sessions;
 
     /**
      * Constructor of the Instructors
@@ -48,9 +48,6 @@ public class Instructor extends Person implements Employ {
         this.sessions.add(s);
     }
 
-    public void pay_for_class(int money) {
-        this.Balance.addMoney(money);
-    }
 
     protected void setSalary(int salary) {
         this.salary = salary;
@@ -60,7 +57,7 @@ public class Instructor extends Person implements Employ {
         this.sessionTypes = sessionTypes;
     }
 
-    ///////////////// Methods //////////////////////
+    // /////////////// Methods //////////////////////
 
     /**
      * A description of our instance

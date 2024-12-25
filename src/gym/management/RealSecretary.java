@@ -26,7 +26,7 @@ public class RealSecretary extends Person implements Secretary {
         data=GymData.getInstance();
     }
 
-    protected void firesecretary() {
+    protected void fire_secretary() {
         gym = null;
         logger = null;
         salary = 0;
@@ -56,8 +56,8 @@ public class RealSecretary extends Person implements Secretary {
     }
 
     @Override
-    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionstype) {
-        return HireInstructor.Do(p1, salary, sessionstype);
+    public Instructor hireInstructor(Person p1, int salary, List<SessionType> sessionsType) {
+        return HireInstructor.Do(p1, salary, sessionsType);
     }
 
 
@@ -82,11 +82,11 @@ public class RealSecretary extends Person implements Secretary {
     @Override
     public void notify(String date, String message) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate newdate = LocalDate.parse(date, dateFormatter);
-        String msg = ("A message was sent to everyone registered for a session on " + newdate + " : " + message);
+        LocalDate newDate = LocalDate.parse(date, dateFormatter);
+        String msg = ("A message was sent to everyone registered for a session on " + newDate + " : " + message);
         logger.log(msg);
         for (Session session : data.getSessionList()) {
-            if (session.getDate().toLocalDate().equals(newdate)) {
+            if (session.getDate().toLocalDate().equals(newDate)) {
                 session.notify(message);
             }
         }

@@ -7,14 +7,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.time.format.DateTimeParseException;
 import java.util.Date;
 
 public class Person {
     private int Id;
     private String Name;
     protected Money_Account Balance;
-    protected Gender Gender;
+    private Gender Gender;
     private Date BirthDate;
     private static int ID = 1111;
     private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
@@ -86,8 +85,7 @@ public class Person {
     }
 
 
-    /// ////////////// Setters //////////////////////
-
+    // ////////////Setters//////////////////////
     /**
      * This method compare between two persons and check if there are the same
      *
@@ -95,7 +93,7 @@ public class Person {
      * @return - a boolean answer.
      */
     public boolean equals(Person p1) {
-        return (p1.Id == this.Id && p1.Name == this.Name && p1.Balance == this.Balance && p1.Gender == this.Gender
+        return (p1.Id == this.Id && p1.Name.equals(this.Name )&& p1.Balance == this.Balance && p1.Gender == this.Gender
                 && p1.BirthDate == this.BirthDate);
     }
 
@@ -105,7 +103,7 @@ public class Person {
      * @return Person describe string
      */
     public String toString() {
-        String bd = "";
+        String bd;
         if (this.BirthDate != null) {
             bd = DATE_FORMAT.format(BirthDate);
         } else

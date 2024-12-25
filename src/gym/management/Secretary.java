@@ -23,7 +23,7 @@ public interface Secretary extends Employ {
      *
      * @return the salary per month
      */
-    public int get_monthly_payment();
+    int get_monthly_payment();
 
     /**
      * This method charge on register clients to the gym
@@ -33,7 +33,7 @@ public interface Secretary extends Employ {
      * @throws InvalidAgeException      if the person is under 18 years old
      * @throws DuplicateClientException if the client already registered to the gym
      */
-    public Client registerClient(Person person) throws InvalidAgeException, DuplicateClientException;
+    Client registerClient(Person person) throws InvalidAgeException, DuplicateClientException;
 
     /**
      * This method charge on unregister clients to the gym
@@ -41,17 +41,17 @@ public interface Secretary extends Employ {
      * @param client the client that need to be removed
      * @throws ClientNotRegisteredException if the client not registered to the gym
      */
-    public void unregisterClient(Client client) throws ClientNotRegisteredException;
+    void unregisterClient(Client client) throws ClientNotRegisteredException;
 
     /**
      * This method charge on hire new instructor to the gym
      *
      * @param person       the person that need to be the instructor
      * @param salary       the salary per hour that the instructor get
-     * @param sessionstype a list of session types the instructor can coach
+     * @param sessionsType a list of session types the instructor can coach
      * @return the instructor that hired to the gym
      */
-    public Instructor hireInstructor(Person person, int salary, List<SessionType> sessionstype);
+    Instructor hireInstructor(Person person, int salary, List<SessionType> sessionsType);
 
 
     /**
@@ -64,7 +64,7 @@ public interface Secretary extends Employ {
      * @return the session that have been created
      * @throws InstructorNotQualifiedException if the instructor cannot coach this session
      */
-    public Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor) throws InstructorNotQualifiedException;
+    Session addSession(SessionType sessionType, String date, ForumType forumType, Instructor instructor) throws InstructorNotQualifiedException;
 
 
     /**
@@ -75,14 +75,14 @@ public interface Secretary extends Employ {
      * @throws DuplicateClientException     if the client already registered to the session
      * @throws ClientNotRegisteredException if the client not registered to the gym
      */
-    public void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException;
+    void registerClientToLesson(Client client, Session session) throws DuplicateClientException, ClientNotRegisteredException;
 
     /**
      * This method charge on notify all the clients of the gym a message
      *
      * @param message the message need to be notified
      */
-    public void notify(String message);
+    void notify(String message);
 
     /**
      * This method charge on notify all the clients that registered to a session in the date was given
@@ -90,7 +90,7 @@ public interface Secretary extends Employ {
      * @param date    all the sessions on that date will be notified
      * @param message the message need to be notified
      */
-    public void notify(String date, String message);
+    void notify(String date, String message);
 
     /**
      * This method charge on notify all the clients that registered to a session
@@ -98,15 +98,15 @@ public interface Secretary extends Employ {
      * @param session all the clients on that session will be notified
      * @param message the message need to be notified
      */
-    public void notify(Session session, String message);
+    void notify(Session session, String message);
 
     /**
      * This method charge on pay the salaries for all the employs
      */
-    public void paySalaries();
+    void paySalaries();
 
     /**
      * This method charge on printing all the actions that has been happened in the gym
      */
-    public void printActions();
+    void printActions();
 }

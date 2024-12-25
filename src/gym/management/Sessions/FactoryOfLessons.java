@@ -2,7 +2,6 @@ package gym.management.Sessions;
 
 import gym.Exception.InstructorNotQualifiedException;
 
-import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 
 public class FactoryOfLessons {

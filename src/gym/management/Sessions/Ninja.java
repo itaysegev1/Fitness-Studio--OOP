@@ -1,7 +1,5 @@
 package gym.management.Sessions;
 
-
-import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 
 /**

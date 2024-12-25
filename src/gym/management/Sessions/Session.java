@@ -2,8 +2,6 @@ package gym.management.Sessions;
 
 import gym.customers.*;
 import gym.management.Subject;
-
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -36,7 +34,7 @@ public abstract class Session extends Subject {
         this.forumType = forumType;
         this.price = price;
         this.capacity = capacity;
-        clients = new ArrayList<Client>();
+        clients = new ArrayList<>();
 
     }
 
@@ -88,10 +86,10 @@ public abstract class Session extends Subject {
         clients.add(client);
         this.attach(client);
     }
-    //////////// Methods //////////////
+    // ////////// Methods //////////////
 
     /**
-     * check if the session didnt get to the capacity yet
+     * check if the session didn't get to the capacity yet
      *
      * @return true if the lesson still available
      */
@@ -119,9 +117,8 @@ public abstract class Session extends Subject {
     public String toString() {
         String d = formatter.format(date);
         String p = (clients.size()) + "/" + (this.getCapacity());
-        String s = "Session Type: " + this.getClass().getSimpleName() + " | Date: " + d + " | Forum: " + this.forumType + " | Instructor: "
+        return "Session Type: " + this.getClass().getSimpleName() + " | Date: " + d + " | Forum: " + this.forumType + " | Instructor: "
                 + this.instructor.getName() + " | Participants: " + p;
-        return s;
     }
 
     /**

@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class GymData {
     protected static GymData instance = new GymData();
-    List<Employ> employList;
-    List<Session> sessionList;
-    List<Client> clientList;
-    Money_Account Balance;
+    private List<Employ> employList;
+    private List<Session> sessionList;
+    private List<Client> clientList;
+    private Money_Account Balance;
 
     ///////////////// Constructor //////////////////
     private GymData() {

@@ -8,7 +8,7 @@ import java.util.List;
  * it saves all the history of the gym
  */
 public class GymLogger {
-    private static GymLogger logger = new GymLogger();
+    private static final GymLogger logger = new GymLogger();
     private List<String> log;
 
     /**

@@ -1,13 +1,9 @@
 package gym.management;
 
 import gym.customers.Client;
-import gym.Money_Account;
 import gym.customers.Person;
 import gym.management.Sessions.Instructor;
 import gym.management.Sessions.Session;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A singleton Class for the gym, cause there is only one gym that be managed in the main.
@@ -25,7 +21,7 @@ public class Gym extends Subject {
         data.setBalance(0);
     }
 
-    /////////////// Getters /////////////////
+    // ///////////// Getters /////////////////
     /**
      * this method return the current instance of the gym.
      *
@@ -39,13 +35,13 @@ public class Gym extends Subject {
         return secretary;
     }
 
-    //////////////// Setters //////////////////
+    // ////////////// Setters //////////////////
     /**
      * this method is for clients that pay for sessions
      *
      * @param balance how much did they pay
      */
-    protected void payforclass(int balance) {
+    protected void updateBalance(int balance) {
         data.setBalance(balance);
     }
 
@@ -69,16 +65,13 @@ public class Gym extends Subject {
      * @param salary how much get paid for month
      */
     public void setSecretary(Person p1, int salary) {
-        if (secretary == null) {
-            secretary = new SecretaryProxy(new RealSecretary(p1, salary));
-            data.addEmploy(secretary);
-        } else {
+        if (secretary != null) {
             data.removeEmploy(secretary);
             ((SecretaryProxy) secretary).block();
-            secretary = new SecretaryProxy(new RealSecretary(p1, salary));
-            data.addEmploy(secretary);
 
         }
+        secretary = new SecretaryProxy(new RealSecretary(p1, salary));
+        data.addEmploy(secretary);
         GymLogger.getInstance().log("A new secretary has started working at the gym: " + p1.getName());
     }
 
@@ -95,7 +88,7 @@ public class Gym extends Subject {
     /**
      * This method remove a client that need to be removed from the gym and removed him also from the notifier.
      *
-     * @param client the client that need to be remove.
+     * @param client the client that need to be removed.
      */
     protected void RemoveClient(Client client) {
         Client c = null;
@@ -192,7 +185,7 @@ public class Gym extends Subject {
 
     /**
      * a String that describe the gym:
-     * "Gym Name:
+     * Gym Name:
      * Gym Secretary:
      * Gym Balance:
      * Clients Data:

@@ -25,10 +25,7 @@ class RegisterClientToSession {
      */
     protected static void Do(Session session, Client client) throws ClientNotRegisteredException, DuplicateClientException {
         if (client != null && session != null) {
-            boolean canRegister = true;
-            if (!is_really_in_gym_check(session)) {
-                canRegister = false;
-            }
+            boolean canRegister = is_really_in_gym_check(session);
             if (!is_registered_to_gym_check(client)) {
                 canRegister = false;
             }
@@ -54,7 +51,7 @@ class RegisterClientToSession {
                 RegisterToSession.do_action(session, client);
                 GymLogger.getInstance().log("Registered client: " + client.getName() + " to session: "
                         + session.getClass().getSimpleName() + " on " + session.getDate() + " for price: " + session.getPrice());
-                Gym.getInstance().payforclass(session.getPrice());
+                Gym.getInstance().updateBalance(session.getPrice());
             }
         }
     }
@@ -162,7 +159,7 @@ class RegisterClientToSession {
     }
 
     /**
-     * This method checks if the client not registered to othe session on the same time.
+     * This method checks if the client not registered to other session on the same time.
      *
      * @param session the session that the client need to register to
      * @param client  the client that trying to register

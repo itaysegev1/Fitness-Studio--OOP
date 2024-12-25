@@ -1,7 +1,5 @@
 package gym.management;
 
-import gym.management.Sessions.Session;
-
 import java.util.List;
 
 /**

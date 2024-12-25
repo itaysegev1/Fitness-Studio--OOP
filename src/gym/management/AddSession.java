@@ -2,8 +2,6 @@ package gym.management;
 
 import gym.Exception.InstructorNotQualifiedException;
 import gym.management.Sessions.*;
-
-import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -11,9 +9,9 @@ import java.time.format.DateTimeParseException;
  */
 class AddSession {
     /**
-     * This method charge on creating new sessions, by checking if the instructor can coach this session
-     * and it add to the logger of the gym all the messages need to add
-     * at the end if the lesson didn't exist in the gym it will create ne one.
+     * This method charge on creating new sessions, by checking if the instructor can coach this session,
+     * and it adds to the logger of the gym all the messages need to add
+     * at the end if the lesson didn't exist in the gym it will create new one.
      *
      * @param sessionType -the type of the session we need to create
      * @param time        the date of the session
