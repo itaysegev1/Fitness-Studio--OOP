@@ -15,6 +15,11 @@ import gym.management.Sessions.SessionType;
 
 import java.util.*;
 
+/**
+ * The Main2 class simulates the operations of a gym, allowing the secretary to register clients, hire instructors,
+ * manage sessions, and notify clients of important events. The system involves creating people, clients, instructors,
+ * and sessions and performing various operations like registration, removal, and notifications.
+ */
 public class Main2 {
     public static void main(String[] args) throws InvalidAgeException, DuplicateClientException, InstructorNotQualifiedException {
         Scanner scanner = new Scanner(System.in);
@@ -33,7 +38,7 @@ public class Main2 {
             System.out.println("\nchoose a action to do:");
             System.out.println("\t1. Add person");
             System.out.println("\t2. Register client");
-            System.out.println("\t3. Remove client");
+            System.out.println("\t3. Unregistered client");
             System.out.println("\t4. Hire instructor");
             System.out.println("\t5. Add session");
             System.out.println("\t6. Register client to session");
@@ -44,6 +49,7 @@ public class Main2 {
             System.out.println("\t11.Set a new new secretary");
             System.out.println("\t12.choose from the secretary history list");
             System.out.println("\t13.Print gym information");
+            System.out.println("\t14.Pay Salaries to all employes");
             System.out.println("\t0. Exit");
             int number = scanner.nextInt();
             switch (number) {
@@ -164,6 +170,13 @@ public class Main2 {
                 case 13:
                     System.out.println(gym);
                     break;
+                case 14:
+                    try {
+                        sec.paySalaries();
+                    } catch (NullPointerException e) {
+                        System.out.println("Error: Former secretaries are not permitted to perform actions");
+                    }
+                    break;
                 case 0:
                     flag = false;
                     break;
@@ -172,6 +185,15 @@ public class Main2 {
         }
     }
 
+    /**
+     * Creates a new Person instance based on user input.
+     * Prompts the user for a decision to create a person, then collects the necessary details such as
+     * name, balance, gender, and birthdate. If gender is chosen as Male, a Person instance with Gender.Male
+     * is returned; otherwise, a Person instance with Gender.Female is returned.
+     * If the user decides not to create a person, the method returns null.
+     *
+     * @return a newly created Person instance or null if the creation process is declined by the user.
+     */
     public static Person createp() {
         System.out.println("you creating a new person \n if you dont want to press 0 otherwise press 1");
         Scanner scanner = new Scanner(System.in);
@@ -198,6 +220,17 @@ public class Main2 {
         return null;
     }
 
+    /**
+     * Creates a new Client instance by selecting a Person from a list and registering them through a Secretary.
+     * The method prompts the user to select a person from the provided list of people and uses the Secretary
+     * to register the chosen person as a Client.
+     *
+     * @param people a list of Person objects to select from
+     * @param sec    the Secretary responsible for registering the Person as a Client
+     * @return a newly created Client instance if successful, or null if the input is invalid
+     * @throws InvalidAgeException      if the selected person's age is invalid for client registration
+     * @throws DuplicateClientException if the selected person is already registered as a client
+     */
     public static Client createclient(List<Person> people, Secretary sec) throws InvalidAgeException, DuplicateClientException {
         System.out.println("choose the person you want to create from");
         for (int i = 0; i < people.size(); i++) {
@@ -215,6 +248,14 @@ public class Main2 {
         return null;
     }
 
+    /**
+     * Removes a client from the gym by unregistering them through the provided Secretary.
+     * Prompts the user to select a client from the provided list of clients for removal.
+     *
+     * @param clients a list of Client objects representing the clients currently registered
+     * @param sec     the Secretary responsible for handling the client unregistration
+     * @throws ClientNotRegisteredException if the chosen client is not registered in the system
+     */
     public static void removeClient(List<Client> clients, Secretary sec) throws ClientNotRegisteredException {
         System.out.println("choose the client you want to remove");
         for (int i = 0; i < clients.size(); i++) {
@@ -226,6 +267,16 @@ public class Main2 {
             sec.unregisterClient(clients.get(number - 1));
     }
 
+    /**
+     * Hires an instructor based on user input, allowing the user to select a person from a list,
+     * specify a salary, and choose the instructor's certified session types.
+     * The hiring process is facilitated by the provided Secretary.
+     *
+     * @param instructors a list of existing Instructor objects for reference
+     * @param people      a list of Person objects to choose from for creating the Instructor
+     * @param sec         the Secretary responsible for hiring and managing instructors
+     * @return a newly created Instructor instance if the process is successful, or null if the input is invalid
+     */
     public static Instructor hireinstructor(List<Instructor> instructors, List<Person> people, Secretary sec) {
         System.out.println("choose the person you want to create from");
         for (int i = 0; i < people.size(); i++) {
@@ -267,6 +318,16 @@ public class Main2 {
         return null;
     }
 
+    /**
+     * Adds a new session to the gym. The method prompts the user to select a session type,
+     * an instructor, a forum type, and to provide a date and time for the session. The session
+     * is created and added using the specified Secretary instance.
+     *
+     * @param instructors a list of available instructors to choose from for the session
+     * @param sec         the Secretary responsible for adding the session
+     * @return the created Session object if successfully added, or null if any required input is invalid
+     * @throws InstructorNotQualifiedException if the selected instructor is not qualified for the chosen session type
+     */
     public static Session addsession(List<Instructor> instructors, Secretary sec) throws InstructorNotQualifiedException {
         System.out.println("choose the session you want to add");
         System.out.println("choose from this list: \n\t1." + SessionType.Ninja + "\n\t2." + SessionType.Pilates
@@ -324,6 +385,18 @@ public class Main2 {
         return session;
     }
 
+    /**
+     * Registers a client to a specified session through the provided Secretary.
+     * The method prompts the user to choose a session and a client from the respective lists
+     * and executes the registration process.
+     *
+     * @param sessions a list of Session objects representing the available sessions
+     * @param clients  a list of Client objects representing the available clients
+     * @param sec      the Secretary managing the registration process
+     * @return true if the registration process is completed successfully
+     * @throws DuplicateClientException     if the client is already registered in the chosen session
+     * @throws ClientNotRegisteredException if the client is not registered in the system
+     */
     public static boolean register_client_to_session(List<Session> sessions, List<Client> clients, Secretary sec)
             throws DuplicateClientException, ClientNotRegisteredException {
         System.out.println("choose the session you want");
@@ -349,6 +422,11 @@ public class Main2 {
         return true;
     }
 
+    /**
+     * Prompts the user to enter a message and notifies all clients of the gym using the provided Secretary instance.
+     *
+     * @param sec the Secretary responsible for sending notifications to all clients
+     */
     public static void notifyall(Secretary sec) {
         System.out.println("Please enter the messege you want to notify: ");
         Scanner scanner = new Scanner(System.in);
@@ -356,6 +434,12 @@ public class Main2 {
         sec.notify(message);
     }
 
+    /**
+     * Prompts the user to enter a message and a date, then notifies all clients
+     * who are registered for sessions on the specified date using the provided Secretary instance.
+     *
+     * @param sec the Secretary responsible for sending notifications to the clients
+     */
     public static void notifydate(Secretary sec) {
         System.out.println("Please enter the messege you want to notify: ");
         Scanner scanner = new Scanner(System.in);
@@ -365,6 +449,13 @@ public class Main2 {
         sec.notify(message, date);
     }
 
+    /**
+     * Prompts the user to enter a message and select a session from the provided list of sessions.
+     * The selected session is then notified with the specified message by utilizing the provided Secretary instance.
+     *
+     * @param sec      the Secretary responsible for sending the notification to the selected session
+     * @param sessions a list of Session objects representing the available sessions for notification
+     */
     public static void notifysession(Secretary sec, List<Session> sessions) {
         System.out.println("Please enter the messege you want to notify: ");
         Scanner scanner = new Scanner(System.in);
@@ -381,6 +472,19 @@ public class Main2 {
         sec.notify(session, message);
     }
 
+    /**
+     * Initializes the gym environment by adding people, clients, instructors,
+     * and sessions to their respective lists and setting up relationships between them.
+     *
+     * @param gym         The gym to be initialized with a secretary, clients, and instructors.
+     * @param sessions    The list of sessions to be populated with new sessions.
+     * @param people      The list of people to be populated with new individuals including clients and instructors.
+     * @param instructors The list of instructors to be populated with hired instructors.
+     * @param clients     The list of clients to be populated with registered clients.
+     * @throws InvalidAgeException             If any person is of an invalid age for the operations being performed.
+     * @throws DuplicateClientException        If an attempt to register a duplicate client is made.
+     * @throws InstructorNotQualifiedException If an instructor hired lacks qualifications for specific session types.
+     */
     public static void startall(Gym gym, List<Session> sessions, List<Person> people, List<Instructor> instructors, List<Client> clients) throws InvalidAgeException, DuplicateClientException, InstructorNotQualifiedException {
 
         Person p1 = new Person("David", 500, Gender.Male, "20-02-1978");
@@ -436,6 +540,9 @@ public class Main2 {
         sessions.add(s6);
     }
 
+    /**
+     * Sets
+     */
     public static Secretary setsec(List<Person> people, Gym gym) {
         System.out.println("choose the person you want to create from");
         for (int i = 0; i < people.size(); i++) {
@@ -453,6 +560,14 @@ public class Main2 {
         return gym.getSecretary();
     }
 
+    /**
+     * Allows the user to choose a Secretary from a given list by displaying options
+     * and reading the user's input. If the input is valid, the selected Secretary
+     * is returned. If the input is invalid, the last Secretary in the list is returned.
+     *
+     * @param secretaries a list of Secretary objects to choose from
+     * @return the selected Secretary if the input is valid; otherwise, the last Secretary in the list
+     */
     public static Secretary choosesec(List<Secretary> secretaries) {
         System.out.println("choose the number of the secretary you want");
         for (int i = 0; i < secretaries.size(); i++) {
