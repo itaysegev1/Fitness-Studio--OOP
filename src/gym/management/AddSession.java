@@ -1,5 +1,6 @@
 package gym.management;
 
+import gym.Actions;
 import gym.Exception.InstructorNotQualifiedException;
 import gym.management.Sessions.*;
 import java.time.format.DateTimeParseException;
@@ -24,7 +25,7 @@ class AddSession {
                                 ForumType forumType, Instructor instructor) throws InstructorNotQualifiedException {
         if (instructor != null) {
             try {
-                Session s = FactoryOfLessons.createSession(sessionType, time, forumType, instructor);
+                Session s = FactoryOfLessons.createSession(sessionType, time, forumType, instructor, Actions.create_session);
                 Gym gym = Gym.getInstance();
                 if (!gym.IsContainSession(s)) {
                     gym.addSession(s);

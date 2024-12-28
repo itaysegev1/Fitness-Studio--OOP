@@ -1,6 +1,7 @@
 package gym.management;
 
 
+import gym.Actions;
 import gym.customers.Person;
 import gym.management.Sessions.CreateInstructor;
 import gym.management.Sessions.Instructor;
@@ -23,7 +24,7 @@ class HireInstructor {
      */
     protected static Instructor Do(Person person, int salary, List<SessionType> sessionTypes) {
         try {
-            Instructor i = CreateInstructor.do_action(person, salary, sessionTypes);
+            Instructor i = CreateInstructor.do_action(person, salary, sessionTypes, Actions.create_instructor);
             Gym gym = Gym.getInstance();
             if (!gym.IsContainInstructor(i)) {
                 gym.addInstructor(i);

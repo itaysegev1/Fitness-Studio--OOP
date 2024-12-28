@@ -1,5 +1,6 @@
 package gym.management;
 
+import gym.Actions;
 import gym.Exception.ClientNotRegisteredException;
 import gym.Exception.DuplicateClientException;
 import gym.customers.Client;
@@ -48,7 +49,7 @@ class RegisterClientToSession {
                 canRegister = false;
             }
             if (canRegister) {
-                RegisterToSession.do_action(session, client);
+                RegisterToSession.do_action(session, client, Actions.register_client_to_session);
                 GymLogger.getInstance().log("Registered client: " + client.getName() + " to session: "
                         + session.getClass().getSimpleName() + " on " + session.getDate() + " for price: " + session.getPrice());
                 Gym.getInstance().updateBalance(session.getPrice());

@@ -1,5 +1,6 @@
 package gym.customers;
 
+import gym.Actions;
 import gym.Exception.InvalidAgeException;
 
 /**
@@ -14,12 +15,17 @@ public class CreateClient {
      * @return the client we made.
      * @throws InvalidAgeException if the age of the client is under 18 and he cant register to the Gym
      */
-    public static Client do_action(Person p1) throws InvalidAgeException, IllegalArgumentException {
-        if (p1.getBirthDate() == null)
-            throw new IllegalArgumentException("Invalid birth date");
-        if (p1.age() < 18)
-            throw new InvalidAgeException("Error: Client must be at least 18 years old to register");
-        return new Client(p1);
+    public static Client do_action(Person p1, Actions action) throws InvalidAgeException, IllegalArgumentException {
+        if (action != Actions.create_client) {
+            return null;
+        }
+            if (p1.getBirthDate() == null)
+                throw new IllegalArgumentException("Invalid birth date");
+            if (p1.age() < 18)
+                throw new InvalidAgeException("Error: Client must be at least 18 years old to register");
+            return new Client(p1);
+
     }
+
 
 }

@@ -1,5 +1,6 @@
 package gym.management.Sessions;
 
+import gym.Actions;
 import gym.customers.Person;
 
 import java.util.List;
@@ -16,7 +17,9 @@ public class CreateInstructor {
      * @param sessionTypes the session type that the instructor can do.
      * @return the instructor we made.
      */
-    public static Instructor do_action(Person p1, int salary, List<SessionType> sessionTypes) throws IllegalArgumentException {
-        return new Instructor(p1, salary, sessionTypes);
+    public static Instructor do_action(Person p1, int salary, List<SessionType> sessionTypes, Actions action) throws IllegalArgumentException {
+        if(action==Actions.create_instructor)
+            return new Instructor(p1, salary, sessionTypes);
+        return null;
     }
 }
