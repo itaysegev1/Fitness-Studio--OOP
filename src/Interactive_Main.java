@@ -21,7 +21,7 @@ import java.util.*;
  * manage sessions, and notify clients of important events. The system involves creating people, clients, instructors,
  * and sessions and performing various operations like registration, removal, and notifications.
  */
-public class Main2 {
+public class Interactive_Main {
     public static void main(String[] args) throws InvalidAgeException, DuplicateClientException, InstructorNotQualifiedException {
         Scanner scanner = new Scanner(System.in);
         List<Secretary> secretaries = new ArrayList<>();
