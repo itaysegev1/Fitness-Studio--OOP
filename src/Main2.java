@@ -16,6 +16,7 @@ import gym.management.Sessions.SessionType;
 import java.util.*;
 
 /**
+ * This Class created by: Itay Segev.
  * The Main2 class simulates the operations of a gym, allowing the secretary to register clients, hire instructors,
  * manage sessions, and notify clients of important events. The system involves creating people, clients, instructors,
  * and sessions and performing various operations like registration, removal, and notifications.
