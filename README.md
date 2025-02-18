@@ -1,5 +1,7 @@
 # Gym Management System
 
+<img src="studio_img.png" width="600" alt="Login Screen"/>
+
 ## Overview
 The Gym Management System is a Java-based project designed to simulate the operations of a gym. <br/>
 It incorporates key software design patterns and robust error-handling mechanisms to ensure seamless management of gym activities.<br/>
